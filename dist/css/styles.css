@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /*!
 * Start Bootstrap - Modern Business v5.0.7 (https://startbootstrap.com/template-overviews/modern-business)
-* Copyright 2013-2023 Start Bootstrap
+* Copyright 2013-2025 Start Bootstrap
 * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-modern-business/blob/master/LICENSE)
 */
 /*!
@@ -10845,4 +10845,67 @@ html {
   background-position: center;
   background-repeat: no-repeat;
   min-height: 15rem;
+}
+
+.rocket-bg {
+  background-color: #0A1428;
+}
+
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.step {
+  text-align: center;
+  position: relative;
+  flex: 1;
+  min-width: 80px;
+}
+.step::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  width: 100%;
+  background-color: #dee2e6;
+  z-index: 0;
+}
+.step:last-child::before {
+  display: none;
+}
+
+.step-indicator {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  background-color: #dee2e6;
+  color: #6c757d;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.step.completed .step-indicator {
+  background-color: #198754;
+  color: #fff;
+}
+
+.step.active .step-indicator {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.step-label {
+  font-size: 1rem;
+  color: #343a40;
+  font-weight: bolder;
 }

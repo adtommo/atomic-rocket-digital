@@ -1,6 +1,7 @@
-nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+nav.navbar.navbar-expand-lg.navbar-dark.rocket-bg
     .container.px-5
-        a.navbar-brand(href='index.html') Start Bootstrap
+        a.navbar-brand(href='index.html')
+            img(src='assets/navbar-logo.png')
         button.navbar-toggler(type='button', data-bs-toggle='collapse', data-bs-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
             span.navbar-toggler-icon
         #navbarSupportedContent.collapse.navbar-collapse
@@ -10,24 +11,16 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
                 li.nav-item
                     a.nav-link(href='about.html') About
                 li.nav-item
-                    a.nav-link(href='contact.html') Contact
+                    a.nav-link(href='pricing.html') Our Plans
                 li.nav-item
-                    a.nav-link(href='pricing.html') Pricing
-                li.nav-item
-                    a.nav-link(href='faq.html') FAQ
+                    a.nav-link(href='blog-home.html') Our Work
                 li.nav-item.dropdown
                     a#navbarDropdownBlog.nav-link.dropdown-toggle(href='#', role='button', data-bs-toggle='dropdown', aria-expanded='false')
-                        | Blog
+                        | What we do
                     ul.dropdown-menu.dropdown-menu-end(aria-labelledby='navbarDropdownBlog')
                         li
-                            a.dropdown-item(href='blog-home.html') Blog Home
+                            a.dropdown-item(href='blog-home.html') Creative Design
                         li
-                            a.dropdown-item(href='blog-post.html') Blog Post
-                li.nav-item.dropdown
-                    a#navbarDropdownPortfolio.nav-link.dropdown-toggle(href='#', role='button', data-bs-toggle='dropdown', aria-expanded='false')
-                        | Portfolio
-                    ul.dropdown-menu.dropdown-menu-end(aria-labelledby='navbarDropdownPortfolio')
+                            a.dropdown-item(href='blog-post.html') Web Design
                         li
-                            a.dropdown-item(href='portfolio-overview.html') Portfolio Overview
-                        li
-                            a.dropdown-item(href='portfolio-item.html') Portfolio Item
+                            a.dropdown-item(href='blog-post.html') Digital Marketing
