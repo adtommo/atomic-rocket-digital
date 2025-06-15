@@ -23,42 +23,37 @@ html(lang='en')
             include includes/navbar.pug
             // Wizard Stepper Section
             section.py-5.bg-light
-            .container.px-5.my-5
-                .text-center.mb-5
-                h2.fw-bolder Our Process
-                p.lead.fw-normal.text-muted Transform Your Business in 5 Simple Steps
+                .container.px-5.my-5
+                    .text-center.mb-5
+                    h2.fw-bolder Our Process
+                    p.lead.fw-normal.text-muted Transform Your Business in 5 Simple Steps
 
-                .d-flex.justify-content-between.flex-wrap.position-relative.stepper
-                // Step 1
-                .step.completed.text-center.flex-fill.position-relative
-                    .step-indicator 1
-                    .step-label.mt-2 Take a look
-                    p Explore the range of plans we offer below to find the one that best suits your needs.
+                    .stepper
+                        .step
+                            .step-indicator 1
+                            .step-label Take a look
+                            p.step-desc Explore the range of plans we offer below to find the one that best suits your needs.
 
-                // Step 2
-                .step.completed.text-center.flex-fill.position-relative
-                    .step-indicator 2
-                    .step-label.mt-2 Free Consultation
-                    p Drop us an email, let us know how we can help. We will talk you through your options and what we will deliver.
+                        .step
+                            .step-indicator 2
+                            .step-label Free Consultation
+                            p.step-desc Drop us an email, let us know how we can help. We will talk you through your options and what we will deliver.
 
-                // Step 3
-                .step.completed.text-center.flex-fill.position-relative
-                    .step-indicator 3
-                    .step-label.mt-2 The Build
-                    p We’ll hold a series of sessions throughout your website build to guide the process. Our iterative development approach allows us to adapt quickly and effectively to any changes along the way.
+                        .step
+                            .step-indicator 3
+                            .step-label The Build
+                            p.step-desc We’ll hold a series of sessions throughout your website build to guide the process. Our iterative development approach allows us to adapt quickly and effectively to any changes along the way.
 
-                // Step 4
-                .step.completed.text-center.flex-fill.position-relative
-                    .step-indicator 4
-                    .step-label.mt-2 The Review
-                    p You'll have dedicated time to review everything agreed upon during our consultation. This is your opportunity to request any final changes before your project goes live.
+                        .step
+                            .step-indicator 4
+                            .step-label The Review
+                            p.step-desc You'll have dedicated time to review everything agreed upon during our consultation. This is your opportunity to request any final changes before your project goes live.
 
+                        .step
+                            .step-indicator 5
+                            .step-label The Go-Live
+                            p.step-desc The exciting part — Go Live! Once we’ve finalized everything and you’re happy with the result, we’ll launch your website and take it live.
 
-                // Step 5
-                .step.completed.text-center.flex-fill.position-relative
-                    .step-indicator 5
-                    .step-label.mt-2 The Go-Live
-                    p The exciting part — Go Live! Once we’ve finalized everything and you’re happy with the result, we’ll launch your website and take it live.
 
 
             // Pricing section
@@ -76,31 +71,38 @@ html(lang='en')
                                     .mb-3
                                         span.display-4.fw-bold £30
                                         span.text-muted / mo.
-                                    ul.list-unstyled.mb-4
+                                        p.text-muted A simple online presence with essential features to get your business started.
+                                    ul.list-unstyled
+                                        li-mb-2
+                                            h6 Domain & Hosting
                                         li.mb-2
                                             i.bi.bi-check.text-primary
-                                            strong 1 users
+                                            | 1 .co.uk or .com domain name
                                         li.mb-2
                                             i.bi.bi-check.text-primary
-                                            | 5GB storage
+                                            | Domain Setup
                                         li.mb-2
                                             i.bi.bi-check.text-primary
-                                            | Unlimited public projects
+                                            | Hosting Maintenance & Security 
                                         li.mb-2
                                             i.bi.bi-check.text-primary
-                                            | Community access
-                                        li.mb-2.text-muted
-                                            i.bi.bi-x
-                                            | Unlimited private projects
-                                        li.mb-2.text-muted
-                                            i.bi.bi-x
-                                            | Dedicated support
-                                        li.mb-2.text-muted
-                                            i.bi.bi-x
-                                            | Free linked domain
-                                        li.text-muted
-                                            i.bi.bi-x
-                                            | Monthly status reports
+                                            | Email Setup
+                                        li.mb-2
+                                            h6 Design & Content
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Custom Design - Up to 5 Pages
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Mobile Responsive
+                                        li.mb-2 
+                                            h6 Engagement
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Social Media Links
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Contact Forms
                                     .d-grid
                                         a.btn.btn-outline-primary(href='#!') Choose plan
                         // Pricing card pro
@@ -113,38 +115,23 @@ html(lang='en')
                                     .mb-3
                                         span.display-4.fw-bold £55
                                         span.text-muted / mo.
+                                        p.text-muted A solid base plan to grow your customer base with enhanced features.
                                     ul.list-unstyled.mb-4
                                         ul.list-unstyled
+                                            li.mb-2 
+                                                h6 Everything in Basic, plus:
+                                                h6 Design & Content
                                             li.mb-2
                                                 i.bi.bi-check.text-primary
-                                                | 1 .co.uk or .com domain name
-                                            li.mb-2
-                                                i.bi.bi-check.text-primary
-                                                | Hosting Maintenance & Security
-                                            li.mb-2
-                                                i.bi.bi-check.text-primary
-                                                | Email Setup
-                                            li.mb-2
-                                                i.bi.bi-check.text-primary
-                                                | Custom Design - 20 Pages
-                                            li.mb-2
-                                                i.bi.bi-check.text-primary
-                                                | Website Refresh (1 per 12 Months)
-                                            li.mb-2
-                                                i.bi.bi-check.text-primary
-                                                | Mobile Responsive
-                                            li.mb-2
-                                                i.bi.bi-check.text-primary
-                                                | Social Media Integration
-                                            li.mb-2
-                                                i.bi.bi-check.text-primary
-                                                | Contact Forms
+                                                | Custom Design - Up to 20 Pages
+                                            li.mb-2 
+                                                h6 Engagement & SEO
                                             li.mb-2
                                                 i.bi.bi-check.text-primary
                                                 | Customer Reviews
                                             li.mb-2
                                                 i.bi.bi-check.text-primary
-                                                | How-to Guides (on request)
+                                                | Self Managed Guides (on request)
                                             li.mb-2
                                                 i.bi.bi-check.text-primary
                                                 | SEO Optimised
@@ -156,16 +143,7 @@ html(lang='en')
                                                 | Website Performance Reports
                                             li.mb-2
                                                 i.bi.bi-check.text-primary
-                                                | Online store for unlimited products
-                                            li.mb-2
-                                                i.bi.bi-check.text-primary
-                                                | Online Booking System
-                                            li.mb-2
-                                                i.bi.bi-check.text-primary
-                                                | Messaging Integration
-                                            li.text-muted
-                                                i.bi.bi-x
-                                                | Payment Gateway setup
+                                                | Blog Setup
                                     .d-grid
                                         a.btn.btn-primary(href='#!') Choose plan
                         // Pricing card enterprise
@@ -176,49 +154,19 @@ html(lang='en')
                                     .mb-3
                                         span.display-4.fw-bold £100
                                         span.text-muted / mo.
+                                        p.text-muted Our premium plan for businesses ready to skyrocket with advanced features.
                                     ul.list-unstyled
-                                        li.mb-2
-                                            i.bi.bi-check.text-primary
-                                            | 1 .co.uk or .com domain name
-                                        li.mb-2
-                                            i.bi.bi-check.text-primary
-                                            | Hosting Maintenance & Security
-                                        li.mb-2
-                                            i.bi.bi-check.text-primary
-                                            | Email Setup
-                                        li.mb-2
-                                            i.bi.bi-check.text-primary
-                                            | Custom Design - 20 Pages
+                                        li.mb-2 
+                                            h6 Everything in Standard, plus: 
+                                            h6 Design & Content
                                         li.mb-2
                                             i.bi.bi-check.text-primary
                                             | Website Refresh (1 per 12 Months)
+                                        li.mb-2 
+                                            h6 E-Commerce & Integration
                                         li.mb-2
                                             i.bi.bi-check.text-primary
-                                            | Mobile Responsive
-                                        li.mb-2
-                                            i.bi.bi-check.text-primary
-                                            | Social Media Integration
-                                        li.mb-2
-                                            i.bi.bi-check.text-primary
-                                            | Contact Forms
-                                        li.mb-2
-                                            i.bi.bi-check.text-primary
-                                            | Customer Reviews
-                                        li.mb-2
-                                            i.bi.bi-check.text-primary
-                                            | How-to Guides (on request)
-                                        li.mb-2
-                                            i.bi.bi-check.text-primary
-                                            | SEO Optimised
-                                        li.mb-2
-                                            i.bi.bi-check.text-primary
-                                            | Media Galleries
-                                        li.mb-2
-                                            i.bi.bi-check.text-primary
-                                            | Website Performance Reports
-                                        li.mb-2
-                                            i.bi.bi-check.text-primary
-                                            | Online store for unlimited products
+                                            | Online Store (Unlimited Products)
                                         li.mb-2
                                             i.bi.bi-check.text-primary
                                             | Online Booking System
