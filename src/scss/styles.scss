@@ -26,3 +26,76 @@ html {
     background-repeat: no-repeat;
     min-height: 15rem;
 }
+
+.rocket-bg {
+    background-color: #0A1428;
+}
+
+// Stepper container
+.stepper {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+// Each step
+.step {
+  text-align: center;
+  position: relative;
+  flex: 1;
+  min-width: 80px;
+
+  // Line connecting steps
+  &::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 2px;
+    width: 100%;
+    background-color: #dee2e6;
+    z-index: 0;
+  }
+
+  // Remove line from last step
+  &:last-child::before {
+    display: none;
+  }
+}
+
+// Circle indicator
+.step-indicator {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+  background-color: #dee2e6;
+  color: #6c757d;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+// Completed step
+.step.completed .step-indicator {
+  background-color: #198754; // Bootstrap success green
+  color: #fff;
+}
+
+// Current/active step
+.step.active .step-indicator {
+  background-color: #0d6efd; // Bootstrap primary blue
+  color: #fff;
+}
+
+// Label under circle
+.step-label {
+  font-size: 1rem;
+  color: #343a40;
+  font-weight: bolder;
+}
