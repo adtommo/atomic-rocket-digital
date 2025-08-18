@@ -34,8 +34,8 @@ html(lang='en')
                                 h1.display-5.fw-bolder.text-white.mb-2 Premium, Bespoke, websites for modern businesses 
                                 p.lead.fw-normal.text-white-50.mb-4 We design and develop responsive mobile-first sites that work for you and your business - fast, reliable, and built to grow! 
                                 .d-grid.gap-3.d-sm-flex.justify-content-sm-center.justify-content-xl-start
-                                    a.btn.btn-primary.btn-lg.px-4.me-sm-3(href='#features') Get Started
-                                    a.btn.btn-outline-light.btn-lg.px-4(href='#!') Learn More
+                                    a.btn.btn-primary.btn-lg.px-4.me-sm-3(href='#pricing') Get Started
+                                    a.btn.btn-outline-light.btn-lg.px-4(href='about.html') Learn More
                         .col-xl-5.col-xxl-6.d-none.d-xl-block.text-center
                             img.img-fluid.rounded-3.my-5(src='https://images.unsplash.com/vector-1738312919533-2bdd58425783?q=80&w=2920&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', alt='...')
 
@@ -155,6 +155,244 @@ html(lang='en')
             //-                         input.form-control(type='text', placeholder='Email address...', aria-label='Email address...', aria-describedby='button-newsletter')
             //-                         button#button-newsletter.btn.btn-outline-light(type='button') Sign up
             //-                     .small.text-white-50 We care about privacy, and will never share your data.
+            section.py-5.bg-light
+                .container.px-5.my-5
+                    .text-center.mb-5
+                    h2.fw-bolder Our Process
+                    p.lead.fw-normal.text-muted Transform Your Business in 5 Simple Steps
+
+                    .stepper
+                        .step
+                            .step-indicator 1
+                            .step-label Take a look
+                            p.step-desc Explore the range of plans we offer below to find the one that best suits your needs.
+
+                        .step
+                            .step-indicator 2
+                            .step-label Free Consultation
+                            p.step-desc Contact us using the form below, let us know how we can help. We will talk you through your options and what we will deliver.
+
+                        .step
+                            .step-indicator 3
+                            .step-label The Build
+                            p.step-desc We’ll hold a series of sessions throughout your website build to guide the process. Our iterative development approach allows us to adapt quickly and effectively to any changes along the way.
+
+                        .step
+                            .step-indicator 4
+                            .step-label The Review
+                            p.step-desc You'll have dedicated time to review everything agreed upon during our consultation. This is your opportunity to request any final changes before your project goes live.
+
+                        .step
+                            .step-indicator 5
+                            .step-label The Go-Live
+                            p.step-desc The exciting part — Go Live! Once we’ve finalized everything and you’re happy with the result, we’ll launch your website and take it live.
+
+
+
+            // Pricing section
+            section#pricing.bg-light.py-5
+                .container.px-5.my-5
+                    .text-center.mb-5
+                        h1.fw-bolder Our Plans
+                        p.lead.fw-normal.text-muted.mb-0 Find the right solution for your business needs.
+                    .row.gx-5.justify-content-center
+                        // Pricing card free
+                        .col-lg-6.col-xl-4
+                            .card.mb-5.mb-xl-0
+                                .card-body.p-5
+                                    .small.text-uppercase.fw-bold.text-muted Basic
+                                    .mb-3
+                                        span.display-4.fw-bold £40
+                                        span.text-muted / mo.
+                                        p.text-muted A simple online presence with essential features to get your business started.
+                                    ul.list-unstyled
+                                        li-mb-2
+                                            h6 Domain & Hosting
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | 1 .co.uk or .com domain name
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Domain Setup
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Hosting Maintenance & Security 
+                                        li.mb-2
+                                            h6 Design & Content
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Custom Design - Up to 5 Pages
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Mobile Responsive
+                                        li.mb-2 
+                                            h6 Engagement
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Social Media Links
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Contact Forms
+                                    //- .d-grid
+                                    //-     a.btn.btn-outline-primary(href='#!') Choose plan
+                        // Pricing card pro
+                        .col-lg-6.col-xl-4
+                            .card.mb-5.mb-xl-0
+                                .card-body.p-5
+                                    .small.text-uppercase.fw-bold
+                                        i.bi.bi-star-fill.text-warning
+                                        | Standard
+                                    .mb-3
+                                        span.display-4.fw-bold £65
+                                        span.text-muted / mo.
+                                        p.text-muted A solid base plan to grow your customer base with enhanced features.
+                                    ul.list-unstyled.mb-4
+                                        ul.list-unstyled
+                                            li.mb-2 
+                                                h6 Everything in Basic, plus:
+                                                h6 Design & Content
+                                            li.mb-2
+                                                i.bi.bi-check.text-primary
+                                                | Custom Design - Up to 20 Pages
+                                            li.mb-2 
+                                                h6 Engagement & SEO
+                                            li.mb-2
+                                                i.bi.bi-check.text-primary
+                                                | Customer Reviews
+                                            li.mb-2
+                                                i.bi.bi-check.text-primary
+                                                | SEO Optimised
+                                            li.mb-2
+                                                i.bi.bi-check.text-primary
+                                                | Website Performance Reports
+                                            li.mb-2
+                                                i.bi.bi-check.text-primary
+                                                | Blog Setup
+                                    //- .d-grid
+                                    //-     a.btn.btn-primary(href='#!') Choose plan
+                        // Pricing card enterprise
+                        .col-lg-6.col-xl-4
+                            .card
+                                .card-body.p-5
+                                    .small.text-uppercase.fw-bold.text-muted Ultimate
+                                    .mb-3
+                                        span.display-4.fw-bold £120
+                                        span.text-muted / mo.
+                                        p.text-muted Our premium plan for businesses ready to skyrocket with advanced features.
+                                    ul.list-unstyled
+                                        li.mb-2 
+                                            h6 Everything in Standard, plus: 
+                                            h6 Design & Content
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Website Refresh (1 per 12 Months)
+                                        li.mb-2 
+                                            h6 E-Commerce & Integration
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Online Store (Unlimited Products)
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Online Booking System
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Messaging Integration
+                                        li.mb-2
+                                            i.bi.bi-check.text-primary
+                                            | Payment Gateway setup
+                                    //- .d-grid
+                                    //-     a.btn.btn-outline-primary(href='#!') Choose plan
+            section.py-5
+                .container.px-5
+                    // Contact form
+                    .bg-light.rounded-3.py-5.px-4.px-md-5.mb-5
+                        .text-center.mb-5
+                            .feature.bg-primary.bg-gradient.text-white.rounded-3.mb-3
+                                i.bi.bi-envelope
+                            h1.fw-bolder Get in touch
+                            p.lead.fw-normal.text-muted.mb-0 We'd love to hear from you
+                        .row.gx-5.justify-content-center
+                            .col-lg-8.col-xl-6
+
+                                // * * * * * * * * * * * * * * *
+                                // * * SB Forms Contact Form * *
+                                // * * * * * * * * * * * * * * *
+
+                                // This form is pre-integrated with SB Forms.
+                                // To make this form functional, sign up at
+                                // https://startbootstrap.com/solution/contact-forms
+                                // to get an API token!
+
+                                form#contactForm(data-sb-form-api-token='API_TOKEN')
+
+                                    // Name input
+                                    .form-floating.mb-3
+                                        input#name.form-control(
+                                            type='text',
+                                            placeholder='Enter your name...'
+                                            data-sb-validations='required'
+                                        )
+                                        label(for='name') Full name
+                                        .invalid-feedback(data-sb-feedback='name:required')
+                                            | A name is required.
+                                    
+                                    // Email address input
+                                    .form-floating.mb-3
+                                        input#email.form-control(
+                                            type='email',
+                                            placeholder='name@example.com'
+                                            data-sb-validations='required,email'
+                                        )
+                                        label(for='email') Email address
+                                        .invalid-feedback(data-sb-feedback='email:required')
+                                            | An email is required.
+                                        .invalid-feedback(data-sb-feedback='email:email')
+                                            | Email is not valid.
+                                    
+                                    // Phone number input
+                                    .form-floating.mb-3
+                                        input#phone.form-control(
+                                            type='tel',
+                                            placeholder='(123) 456-7890'
+                                            data-sb-validations='required'
+                                        )
+                                        label(for='phone') Phone number
+                                        .invalid-feedback(data-sb-feedback='phone:required')
+                                            | A phone number is required.
+                                    
+                                    // Message input
+                                    .form-floating.mb-3
+                                        textarea#message.form-control(
+                                            type='text',
+                                            placeholder='Enter your message here...',
+                                            style='height: 10rem;'
+                                            data-sb-validations='required'
+                                        )
+                                        label(for='message') Message
+                                        .invalid-feedback(data-sb-feedback='message:required')
+                                            | A message is required.
+
+                                    // Submit success message
+                                    //
+                                    // This is what your users will see when the form
+                                    // has successfully submitted
+                                    #submitSuccessMessage.d-none
+                                        .text-center.mb-3
+                                            .fw-bolder Form submission successful!
+                                            | To activate this form, sign up at
+                                            br
+                                            a(href='https://startbootstrap.com/solution/contact-forms') https://startbootstrap.com/solution/contact-forms
+
+                                    // Submit error message
+                                    //
+                                    // This is what your users will see when there is
+                                    // an error submitting the form
+                                    #submitErrorMessage.d-none
+                                        .text-center.text-danger.mb-3 Error sending message!
+
+                                    // Submit Button
+                                    .d-grid
+                                        button#submitButton.btn.btn-primary.btn-lg.disabled(type='submit') Submit        
 
         // Footer
         include includes/footer.pug

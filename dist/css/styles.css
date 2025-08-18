@@ -10851,6 +10851,12 @@ html {
   background-color: #0A1428;
 }
 
+.nav-top {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
 .stepper {
   display: flex;
   flex-wrap: wrap;
