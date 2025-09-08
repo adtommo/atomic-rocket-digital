@@ -17,7 +17,7 @@ function FeaturesSection() {
     {
       icon: ElectricBoltIcon,
       title: "Lightning-Fast Performance", 
-      description: "Speed that keeps users engaged - and Google happy."
+      description: "Speed that keeps users engaged — and Google happy."
     },
     {
       icon: RocketLaunchIcon,
@@ -35,18 +35,24 @@ function FeaturesSection() {
     <Box 
       component="section" 
       id="features"
-      sx={{ py: 5, backgroundColor:'#f8f9fa', color:'#000B1E', paddingRight:'3rem !important', paddingLeft:'3rem !important'}}
+      sx={{ 
+        py: { xs: 6, md: 10 }, 
+        backgroundColor: '#f8f9fa', 
+        color: '#000B1E',
+      }}
     >
-      <Container maxWidth="xl" sx={{ px: 5, my: 5 }}>
-        <Grid container spacing={5}>
+      <Container maxWidth="xl">
+        <Grid container spacing={6} alignItems="center">
+          
           {/* Left Column - Main Heading */}
-          <Grid size={{xs:12, lg:4}} sx={{ mb: { xs: 5, lg: 0 } }}>
+          <Grid size={{xs:12, lg:4}} sx={{ textAlign: { xs: 'center', lg: 'left' } }}>
             <Typography
+              component="h2"
               sx={{
-                fontWeight: 'bolder',
-                mb: 0,
-                fontSize: 'calc(1.325rem + 0.9vw)',
-                textAlign:'center'
+                fontWeight: 800,
+                lineHeight: 1.2,
+                fontSize: { xs: '1.75rem', md: '2.25rem' },
+                mb: { xs: 4, lg: 0 },
               }}
             >
               Ready When You Are.
@@ -55,43 +61,44 @@ function FeaturesSection() {
 
           {/* Right Column - Features Grid */}
           <Grid size={{xs:12, lg:8}} >
-            <Grid container spacing={5}>
+            <Grid container spacing={6}>
               {features.map((feature, index) => {
                 const IconComponent = feature.icon;
                 return (
                   <Grid 
                     key={index}
-                    size={{xs:12, md:6}}
-                    sx={{ 
-                      mb: { xs: 5, md: index >= 2 ? 0 : 5 },
-                      height: '100%'
-                    }}
+                    size={{xs:12, md:6}} 
+                    sx={{ textAlign: { xs: 'center', md: 'left' } }}
                   >
                     {/* Feature Icon */}
                     <Box
                       sx={{
-                        width: 64,
-                        height: 64,
+                        width: { xs: 56, md: 64 },
+                        height: { xs: 56, md: 64 },
                         background: 'linear-gradient(135deg, #1976d2, #42a5f5)',
                         color: 'white',
                         borderRadius: 3,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        mb: 3
+                        mb: 2,
+                        mx: { xs: 'auto', md: 0 },
+                        boxShadow: 3,
+                        transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                        '&:hover': { transform: 'translateY(-4px)', boxShadow: 6 },
                       }}
                     >
-                      <IconComponent />
+                      <IconComponent fontSize="medium" />
                     </Box>
 
                     {/* Feature Title */}
                     <Typography
-                      variant="h5"
+                      variant="h6"
                       component="h3"
                       sx={{
-                        fontWeight: 'bold',
-                        mb: 2,
-                        fontSize: '1.25rem'
+                        fontWeight: 700,
+                        mb: 1,
+                        fontSize: { xs: '1.1rem', md: '1.25rem' },
                       }}
                     >
                       {feature.title}
@@ -99,10 +106,13 @@ function FeaturesSection() {
 
                     {/* Feature Description */}
                     <Typography
-                      variant="body1"
+                      variant="body2"
                       sx={{
-                        mb: 0,
-                        lineHeight: 1.6
+                        color: 'text.secondary',
+                        lineHeight: 1.6,
+                        fontSize: { xs: '0.95rem', md: '1rem' },
+                        maxWidth: { xs: '90%', md: '100%' },
+                        mx: { xs: 'auto', md: 0 },
                       }}
                     >
                       {feature.description}

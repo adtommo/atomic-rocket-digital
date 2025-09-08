@@ -6,6 +6,8 @@ import Hero from "./components/hero";
 import FeaturesSection from "./components/features";
 import ProcessSection from "./components/process";
 import PricingSection from "./components/pricing";
+import GetInTouchForm from "./components/form";
+import Footer from "./components/footer";
 
 const theme = createTheme({
   palette: {
@@ -37,6 +39,7 @@ const Home = () => {
       <ProcessSection/>
       <PricingSection/>
     </ThemeProvider>
+      <GetInTouchForm/>
     </>
   )
 }
@@ -68,7 +71,7 @@ function App() {
               <Route path="/404" element={<div>Choose the correct path</div>} />
               <Route path ="*"element={<Navigate replace to="/404" />} />
             </Routes>
-        
+        <Footer/>
       </BrowserRouter>
     );
 }

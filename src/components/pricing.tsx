@@ -125,7 +125,7 @@ function PricingSection() {
                   {/* Plan Badge */}
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                     {plan.badge === 'popular' && (
-                      <StarIcon style={{ marginRight: 8 }} />
+                      <StarIcon style={{ marginRight: 8, color:'#d4af37' }} />
                     )}
                     <Typography
                       variant="overline"

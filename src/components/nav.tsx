@@ -3,65 +3,63 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import logo from "/navbar-logo.png"
+import logo from "/navbar-logo.png";
 import { useNavigate } from 'react-router-dom';
 
-const pages = [{name:'Home', link:"/"}, {name:'About', link:"/about"}, {name:'Our Work', link:"/our-work"}];
+const pages = [
+  { name: 'Home', link: '/' },
+  { name: 'About', link: '/about' },
+  { name: 'Our Work', link: '/our-work' },
+];
 
 function ResponsiveAppBar() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleCloseNavMenu = (goto: string | undefined) => {
-    if (goto){
-      navigate(goto)
-    }
+
+  const handleCloseNavMenu = (goto?: string) => {
+    if (goto) navigate(goto);
     setAnchorElNav(null);
   };
 
   return (
-    <AppBar position="sticky">
-      <Container maxWidth="xl" sx={{ paddingRight:'3rem !important', paddingLeft:'3rem !important'}}>
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
+    <AppBar position="sticky" color="primary" elevation={3}>
+      <Container maxWidth="xl">
+        <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
+          
+          {/* Logo (works for both desktop & mobile) */}
+          <Box
             component="a"
             href="/"
             sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
+              display: 'flex',
+              alignItems: 'center',
               textDecoration: 'none',
+              color: 'inherit',
             }}
           >
             <Avatar
-            variant='square'
-            sx={{
-              width:"auto",
-              height:"auto",
-            }}
-            src={logo}
-          />
-          </Typography>
+              variant="square"
+              src={logo}
+              alt="Company Logo"
+              sx={{ width: { xs: 120, sm: 150 }, height: 'auto' }}
+            />
+          </Box>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          {/* Mobile Menu Button */}
+          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="open navigation menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
@@ -72,57 +70,31 @@ function ResponsiveAppBar() {
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'left' }}
               open={Boolean(anchorElNav)}
-              onClose={() => handleCloseNavMenu}
+              onClose={() => handleCloseNavMenu()}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
                 <MenuItem key={page.link} onClick={() => handleCloseNavMenu(page.link)}>
-                  <Typography sx={{ textAlign: 'center' }}>{page.name}</Typography>
+                  {page.name}
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            <Avatar
-            variant='square'
-            sx={{
-              width:"auto",
-              height:"auto",
-            }}
-            src={logo}
-          />
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: "flex-end" }}>
+
+          {/* Desktop Nav Links */}
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
             {pages.map((page) => (
               <Button
                 key={page.link}
                 onClick={() => handleCloseNavMenu(page.link)}
-                sx={{ my: 2, color: 'white', display: 'block', marginLeft:"1%"}}
+                sx={{
+                  color: 'white',
+                  fontWeight: 500,
+                  '&:hover': { backgroundColor: 'rgba(255,255,255,0.1)' },
+                }}
               >
                 {page.name}
               </Button>
@@ -133,4 +105,5 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
+
 export default ResponsiveAppBar;
