@@ -30,8 +30,8 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar position="sticky">
+      <Container maxWidth="xl" sx={{ paddingRight:'3rem !important', paddingLeft:'3rem !important'}}>
         <Toolbar disableGutters>
           <Typography
             variant="h6"
