@@ -10,10 +10,74 @@ function Hero() {
     <Box
       component="header"
       sx={{
-        // Rocket background styling - using gradient to simulate rocket-bg class
-        background: '#000B1E', paddingRight:'3rem !important', paddingLeft:'3rem !important'
-      }}
+          py: 8,
+          px:2,
+          background: 'linear-gradient(135deg, #000B1E 0%, #0d6efd 100%)',
+          position: 'relative',
+          overflow: 'hidden',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%)',
+            pointerEvents: 'none'
+          }
+        }}
     >
+            {/* Animated background elements */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '10%',
+          left: '10%',
+          width: 200,
+          height: 200,
+          background: 'rgba(255, 255, 255, 0.1)',
+          borderRadius: '50%',
+          '@keyframes float1': {
+            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+            '50%': { transform: 'translateY(-30px) rotate(180deg)' }
+          },
+          animation: 'float1 8s ease-in-out infinite'
+        }}
+      />
+      
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '60%',
+          right: '15%',
+          width: 150,
+          height: 150,
+          background: 'rgba(255, 255, 255, 0.08)',
+          borderRadius: '50%',
+          '@keyframes float2': {
+            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+            '50%': { transform: 'translateY(-20px) rotate(-180deg)' }
+          },
+          animation: 'float2 6s ease-in-out infinite'
+        }}
+      />
+      
+      <Box
+        sx={{
+          position: 'absolute',
+          bottom: '10%',
+          left: '20%',
+          width: 100,
+          height: 100,
+          background: 'rgba(255, 255, 255, 0.06)',
+          borderRadius: '50%',
+          '@keyframes float3': {
+            '0%, 100%': { transform: 'translateY(0px) scale(1)' },
+            '50%': { transform: 'translateY(-15px) scale(1.1)' }
+          },
+          animation: 'float3 4s ease-in-out infinite'
+        }}
+      />
       <Container maxWidth="xl" >
         <Grid 
           container 
@@ -40,7 +104,7 @@ function Hero() {
                   lineHeight: 1.2
                 }}
               >
-                Premium, Bespoke, websites for modern businesses
+                Premium, Bespoke, Websites & Automated Solutions for modern businesses
               </Typography>
               
               <Typography
@@ -54,7 +118,7 @@ function Hero() {
                   fontSize: { xs: '1.1rem', md: '1.25rem' }
                 }}
               >
-                We design and develop responsive mobile-first sites that work for you and your business - fast, reliable, and built to grow!
+                We design and develop responsive mobile-first sites and automations that work for you and your business - fast, reliable, and built to grow!
               </Typography>
               
               <Stack

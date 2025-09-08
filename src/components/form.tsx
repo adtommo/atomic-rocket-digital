@@ -84,9 +84,13 @@ function GetInTouchForm() {
     <Box 
       component="section"
       id="contact"
-      sx={{ py: 8 }}
+      sx={{ 
+        py: 6, 
+        backgroundColor: '#f8f9fa', 
+        color: '#000B1E',
+      }}
     >
-      <Container maxWidth="xl" sx={{ px: 5 }}>
+      <Container maxWidth="xl" sx={{ px: 5, pb:8 }}>
         {/* Header */}
         <Box sx={{ textAlign: 'center', mb: 8 }}>
           <Typography

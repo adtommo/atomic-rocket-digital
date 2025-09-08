@@ -50,7 +50,7 @@ function ResponsiveAppBar() {
             <Avatar
               variant="square"
               src={logo}
-              alt="Company Logo"
+              alt="Atomic Rocket Digital"
               sx={{ width: { xs: 120, sm: 150 }, height: 'auto' }}
             />
           </Box>

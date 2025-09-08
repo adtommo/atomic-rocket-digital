@@ -8,6 +8,8 @@ import ProcessSection from "./components/process";
 import PricingSection from "./components/pricing";
 import GetInTouchForm from "./components/form";
 import Footer from "./components/footer";
+import AboutPage from "./components/about";
+import NotFoundPage from "./components/notfound";
 
 const theme = createTheme({
   palette: {
@@ -46,7 +48,7 @@ const Home = () => {
 const About = () => {
   return(
     <>
-      About
+      <AboutPage/>
     </>
   )
 }
@@ -68,7 +70,7 @@ function App() {
               <Route index element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/our-work" element={<OurWork />} />
-              <Route path="/404" element={<div>Choose the correct path</div>} />
+              <Route path="/404" element={<NotFoundPage/>} />
               <Route path ="*"element={<Navigate replace to="/404" />} />
             </Routes>
         <Footer/>
