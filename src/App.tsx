@@ -1,5 +1,5 @@
 import "./App.css";
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes, useLocation} from "react-router-dom";
 import Navbar from "./components/nav";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Hero from "./components/hero";
@@ -10,6 +10,15 @@ import GetInTouchForm from "./components/form";
 import Footer from "./components/footer";
 import AboutPage from "./components/about";
 import NotFoundPage from "./components/notfound";
+import { useLayoutEffect } from "react";
+
+const Wrapper = ({children}) => {
+  const location = useLocation();
+  useLayoutEffect(() => {
+    document.documentElement.scrollTo(0, 0);
+  }, [location.pathname]);
+  return children
+} 
 
 const theme = createTheme({
   palette: {
@@ -63,6 +72,7 @@ const OurWork = () => {
 function App() {
     return (
       <BrowserRouter>
+      <Wrapper>
         <ThemeProvider theme={theme}>
           <Navbar/>
         </ThemeProvider>
@@ -74,6 +84,7 @@ function App() {
               <Route path ="*"element={<Navigate replace to="/404" />} />
             </Routes>
         <Footer/>
+        </Wrapper>
       </BrowserRouter>
     );
 }
