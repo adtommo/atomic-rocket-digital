@@ -13,7 +13,7 @@ import NotFoundPage from "./components/notfound";
 import { useLayoutEffect } from "react";
 import FeaturedWorkSection from "./components/featured";
 
-const Wrapper = ({children}) => {
+const Wrapper: React.FC<React.PropsWithChildren<{}>> = ({children}) => {
   const location = useLocation();
   useLayoutEffect(() => {
     document.documentElement.scrollTo(0, 0);
