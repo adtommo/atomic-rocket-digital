@@ -14,11 +14,11 @@ const steps = [
   },
   {
     label: 'Free Consultation',
-    description: 'Contact us using the form below, let us know how we can help. We will talk you through your options and what we will deliver.',
+    description: 'Tell us a little about your goals using the form below. We’ll walk you through your options and outline exactly what we can deliver.',
   },
   {
     label: 'The Build',
-    description: "We'll hold a series of sessions throughout your website build to guide the process. Our iterative development approach allows us to adapt quickly and effectively to any changes along the way.",
+    description: "Through a series of collaborative sessions, we’ll design and develop your website step by step. Our iterative approach ensures we can adapt quickly to new ideas. At this stage, we’ll also consider useful automations. For example, turning customer quote requests into an automatic workflow that sends a confirmation email, logs their details in a spreadsheet or CRM, and notifies you instantly so no lead gets missed.",
   },
   {
     label: 'The Review',
@@ -26,7 +26,7 @@ const steps = [
   },
   {
     label: 'The Go-Live',
-    description: "The exciting part — Go Live! Once we've finalized everything and you're happy with the result, we'll launch your website and take it live.",
+    description: "The exciting part, Go Live! Once we've finalized everything and you're happy with the result, we'll launch your website and take it live. Your new site and automations will be working behind the scenes to save you time from day one.",
   },
 ];
 

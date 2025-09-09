@@ -19,10 +19,10 @@ function PricingSection() {
       price: '£40',
       period: '/ mo.',
       description: 'A simple online presence with essential features to get your business started.',
+      setup:'£200 setup fee',
       badge: null,
       features: [
         { type: 'header', text: 'Domain & Hosting' },
-        { type: 'feature', text: '1 .co.uk or .com domain name' },
         { type: 'feature', text: 'Domain Setup' },
         { type: 'feature', text: 'Hosting Maintenance & Security' },
         { type: 'header', text: 'Design & Content' },
@@ -38,6 +38,7 @@ function PricingSection() {
       price: '£65',
       period: '/ mo.',
       description: 'A solid base plan to grow your customer base with enhanced features.',
+      setup:'£400 setup fee',
       badge: 'popular',
       features: [
         { type: 'header', text: 'Everything in Basic, plus:' },
@@ -47,7 +48,9 @@ function PricingSection() {
         { type: 'feature', text: 'Customer Reviews' },
         { type: 'feature', text: 'SEO Optimised' },
         { type: 'feature', text: 'Website Performance Reports' },
-        { type: 'feature', text: 'Blog Setup' }
+        { type: 'header', text: 'Automations' },
+        { type: 'feature', text: 'Basic workflow automations' },
+        
       ]
     },
     {
@@ -55,6 +58,7 @@ function PricingSection() {
       price: '£120',
       period: '/ mo.',
       description: 'Our premium plan for businesses ready to skyrocket with advanced features.',
+      setup:'£800 setup fee',
       badge: null,
       features: [
         { type: 'header', text: 'Everything in Standard, plus:' },
@@ -64,7 +68,9 @@ function PricingSection() {
         { type: 'feature', text: 'Online Store (Unlimited Products)' },
         { type: 'feature', text: 'Online Booking System' },
         { type: 'feature', text: 'Messaging Integration' },
-        { type: 'feature', text: 'Payment Gateway setup' }
+        { type: 'feature', text: 'Payment Gateway setup' },
+        { type: 'header', text: 'Automations' },
+        { type: 'feature', text: 'Advanced workflow automations to streamline your business' },
       ]
     }
   ];
@@ -102,7 +108,18 @@ function PricingSection() {
               fontSize: { xs: '1.1rem', md: '1.25rem' }
             }}
           >
-            Find the right solution for your business needs.
+            Each project is unique, contact us for a free consultation and a personalised quote.
+          </Typography>
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 'normal',
+              color: 'text.secondary',
+              mb: 0,
+              fontSize: { xs: '1.1rem', md: '1.25rem' }
+            }}
+          >
+            Below is a guideline of our prices.
           </Typography>
         </Box>
 
@@ -163,6 +180,9 @@ function PricingSection() {
                         {plan.period}
                       </Typography>
                     </Box>
+                    <ListItemText
+                              primary={plan.setup}
+                            />
                     <Typography
                       variant="body1"
                       sx={{

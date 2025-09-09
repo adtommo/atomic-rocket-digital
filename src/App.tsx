@@ -11,6 +11,7 @@ import Footer from "./components/footer";
 import AboutPage from "./components/about";
 import NotFoundPage from "./components/notfound";
 import { useLayoutEffect } from "react";
+import FeaturedWorkSection from "./components/featured";
 
 const Wrapper = ({children}) => {
   const location = useLocation();
@@ -64,7 +65,7 @@ const About = () => {
 const OurWork = () => {
   return(
     <>
-      OurWork
+      <FeaturedWorkSection/>
     </>
   )
 }
