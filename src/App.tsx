@@ -1,17 +1,18 @@
 import "./App.css";
 import {BrowserRouter, Navigate, Route, Routes, useLocation} from "react-router-dom";
-import Navbar from "./components/nav";
+import ResponsiveAppBar from "./components/ResponsiveAppBar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Hero from "./components/hero";
-import FeaturesSection from "./components/features";
-import ProcessSection from "./components/process";
-import PricingSection from "./components/pricing";
-import GetInTouchForm from "./components/form";
-import Footer from "./components/footer";
-import AboutPage from "./components/about";
-import NotFoundPage from "./components/notfound";
+import HeroSection from "./components/HeroSection";
+import FeaturesSection from "./components/FeaturesSection";
+import ProcessSection from "./components/ProcessSection";
+import PricingSection from "./components/PricingSection";
+import GetInTouchForm from "./components/GetInTouchForm";
+import AboutPage from "./components/AboutPage";
+import NotFoundPage from "./components/NotFoundPage";
 import { useLayoutEffect } from "react";
-import FeaturedWorkSection from "./components/featured";
+import FeaturedWorkSection from "./components/FeaturedWorkSection";
+import FooterSection from "./components/FooterSection";
+import HelpWidget from "./components/HelpWidget";
 
 const Wrapper: React.FC<React.PropsWithChildren<{}>> = ({children}) => {
   const location = useLocation();
@@ -46,7 +47,7 @@ const Home = () => {
   return(
     <>
     <ThemeProvider theme={theme}>
-      <Hero/>
+      <HeroSection/>
       <FeaturesSection/>
       <ProcessSection/>
       <PricingSection/>
@@ -73,9 +74,10 @@ const OurWork = () => {
 function App() {
     return (
       <BrowserRouter>
+      <HelpWidget/>
       <Wrapper>
         <ThemeProvider theme={theme}>
-          <Navbar/>
+          <ResponsiveAppBar/>
         </ThemeProvider>
             <Routes>
               <Route index element={<Home />} />
@@ -84,7 +86,7 @@ function App() {
               <Route path="/404" element={<NotFoundPage/>} />
               <Route path ="*"element={<Navigate replace to="/404" />} />
             </Routes>
-        <Footer/>
+        <FooterSection/>
         </Wrapper>
       </BrowserRouter>
     );

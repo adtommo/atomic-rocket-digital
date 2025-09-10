@@ -8,7 +8,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
-function Footer() {
+function FooterSection() {
   return (
     <Box component="footer" sx={{ backgroundColor: '#000B1E', color: 'white'}}>
       <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
@@ -63,4 +63,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default FooterSection;

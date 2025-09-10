@@ -18,8 +18,8 @@ function PricingSection() {
       name: 'Basic',
       price: '£40',
       period: '/ mo.',
+      setup: '£200 setup fee',
       description: 'A simple online presence with essential features to get your business started.',
-      setup:'£200 setup fee',
       badge: null,
       features: [
         { type: 'header', text: 'Domain & Hosting' },
@@ -30,15 +30,15 @@ function PricingSection() {
         { type: 'feature', text: 'Mobile Responsive' },
         { type: 'header', text: 'Engagement' },
         { type: 'feature', text: 'Social Media Links' },
-        { type: 'feature', text: 'Contact Forms' }
-      ]
+        { type: 'feature', text: 'Contact Forms' },
+      ],
     },
     {
       name: 'Standard',
       price: '£65',
       period: '/ mo.',
+      setup: '£400 setup fee',
       description: 'A solid base plan to grow your customer base with enhanced features.',
-      setup:'£400 setup fee',
       badge: 'popular',
       features: [
         { type: 'header', text: 'Everything in Basic, plus:' },
@@ -50,15 +50,14 @@ function PricingSection() {
         { type: 'feature', text: 'Website Performance Reports' },
         { type: 'header', text: 'Automations' },
         { type: 'feature', text: 'Basic workflow automations' },
-        
-      ]
+      ],
     },
     {
       name: 'Ultimate',
       price: '£120',
       period: '/ mo.',
+      setup: '£800 setup fee',
       description: 'Our premium plan for businesses ready to skyrocket with advanced features.',
-      setup:'£800 setup fee',
       badge: null,
       features: [
         { type: 'header', text: 'Everything in Standard, plus:' },
@@ -71,152 +70,77 @@ function PricingSection() {
         { type: 'feature', text: 'Payment Gateway setup' },
         { type: 'header', text: 'Automations' },
         { type: 'feature', text: 'Advanced workflow automations to streamline your business' },
-      ]
-    }
+      ],
+    },
   ];
 
   return (
-    <Box 
-      component="section" 
-      id="pricing"
-      sx={{ 
-        backgroundColor: 'grey.100', 
-        py: 5,
-        color:'black'
-      }}
-    >
-      <Container maxWidth="xl" sx={{ px: 5, my: 5 }}>
+    <Box component="section" id="pricing" sx={{ backgroundColor: 'grey.100', py: 8 }}>
+      <Container maxWidth="xl" sx={{ px: { xs: 3, md: 5 } }}>
         {/* Header */}
-        <Box sx={{ textAlign: 'center', mb: 5 }}>
-          <Typography
-            variant="h1"
-            component="h1"
-            sx={{
-              fontWeight: 'bold',
-              mb: 2,
-              fontSize: { xs: '2.5rem', md: '3rem' }
-            }}
-          >
+        <Box sx={{ textAlign: 'center', mb: 6 }}>
+          <Typography variant="h2" sx={{ fontWeight: 'bold', mb: 2 }}>
             Our Plans
           </Typography>
-          <Typography
-            variant="h5"
-            sx={{
-              fontWeight: 'normal',
-              color: 'text.secondary',
-              mb: 0,
-              fontSize: { xs: '1.1rem', md: '1.25rem' }
-            }}
-          >
-            Each project is unique, contact us for a free consultation and a personalised quote.
+          <Typography variant="h5" color="text.secondary" sx={{ mb: 1 }}>
+            Each project is unique. Contact us for a free consultation and personalised quote.
           </Typography>
-          <Typography
-            variant="h5"
-            sx={{
-              fontWeight: 'normal',
-              color: 'text.secondary',
-              mb: 0,
-              fontSize: { xs: '1.1rem', md: '1.25rem' }
-            }}
-          >
-            Below is a guideline of our prices.
+          <Typography variant="h6" color="text.secondary">
+            If you prefer to host the site yourself after setup, you only pay the setup fee.
           </Typography>
         </Box>
 
         {/* Pricing Cards */}
         <Grid container spacing={5} justifyContent="center">
           {plans.map((plan) => (
-            <Grid key={plan.name} size={{xs:12, sm:12, md:4, lg:4, xl:4}}>
+            <Grid size={{xs:12, sm:8, md:4}} key={plan.name}>
               <Card
                 sx={{
-                  mb: { xs: 5, xl: 0 },
                   height: '100%',
                   position: 'relative',
-                  ...(plan.badge === 'popular' && {
-                    border: '2px solid',
-                    borderColor: 'primary.main'
-                  })
+                  border: plan.badge === 'popular' ? '2px solid' : undefined,
+                  borderColor: plan.badge === 'popular' ? 'primary.main' : undefined,
+                  boxShadow: plan.badge === 'popular' ? 6 : 3,
+                  '&:hover': { transform: 'scale(1.03)', transition: '0.3s' },
                 }}
               >
                 <CardContent sx={{ p: 5 }}>
-                  {/* Plan Badge */}
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                    {plan.badge === 'popular' && (
-                      <StarIcon style={{ marginRight: 8, color:'#d4af37' }} />
-                    )}
-                    <Typography
-                      variant="overline"
-                      sx={{
-                        fontWeight: 'bold',
-                        color: plan.badge ? 'primary.main' : 'text.secondary',
-                        textTransform: 'uppercase'
-                      }}
-                    >
+                  {/* Plan Header */}
+                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                    {plan.badge === 'popular' && <StarIcon sx={{ color: '#d4af37', mr: 1 }} />}
+                    <Typography variant="overline" sx={{ fontWeight: 'bold', color: plan.badge ? 'primary.main' : 'text.secondary', textTransform: 'uppercase' }}>
                       {plan.name}
                     </Typography>
                   </Box>
 
                   {/* Price */}
-                  <Box sx={{ mb: 3 }}>
+                  <Box sx={{ mb: 2 }}>
                     <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
-                      <Typography
-                        variant="h2"
-                        component="span"
-                        sx={{
-                          fontWeight: 'bold',
-                          fontSize: '3.5rem'
-                        }}
-                      >
-                        {plan.price}
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        component="span"
-                        sx={{
-                          color: 'text.secondary',
-                          ml: 1
-                        }}
-                      >
+                      <Typography variant="h3" sx={{ fontWeight: 'bold' }}>{plan.price}</Typography>
+                      <Typography variant="body1" color="text.secondary" ml={1}>
                         {plan.period}
                       </Typography>
                     </Box>
-                    <ListItemText
-                              primary={plan.setup}
-                            />
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: 'text.secondary',
-                        mt: 1
-                      }}
-                    >
+                    <Typography variant="body2" color="text.secondary" mt={0.5}>
+                      {plan.setup}
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary" mt={1}>
                       {plan.description}
                     </Typography>
                   </Box>
 
-                  {/* Features List */}
+                  {/* Features */}
                   <List sx={{ p: 0 }}>
-                    {plan.features.map((feature, featureIndex) => (
-                      <ListItem key={featureIndex} sx={{ px: 0, py: 0.5 }}>
+                    {plan.features.map((feature, idx) => (
+                      <ListItem key={idx} sx={{ px: feature.type === 'feature' ? 3 : 0, py: 0.5 }}>
                         {feature.type === 'header' ? (
-                          <Typography
-                            variant="subtitle1"
-                            sx={{
-                              fontWeight: 600,
-                              color: 'text.primary',
-                              mb: 0.5
-                            }}
-                          >
+                          <Typography variant="subtitle1" fontWeight={600} color="text.primary" mb={0.5}>
                             {feature.text}
                           </Typography>
                         ) : (
                           <>
-                            <ListItemIcon sx={{ minWidth: 32 }}>
-                              <CheckCircleIcon />
-                            </ListItemIcon>
-                            <ListItemText
-                              primary={feature.text}
-                            />
+                            <ListItemIcon sx={{ minWidth: 32 }}><CheckCircleIcon color="primary" /></ListItemIcon>
+                            <ListItemText primary={feature.text} />
                           </>
                         )}
                       </ListItem>
@@ -229,11 +153,7 @@ function PricingSection() {
                       label="Most Popular"
                       color="primary"
                       size="small"
-                      sx={{
-                        position: 'absolute',
-                        top: 16,
-                        right: 16
-                      }}
+                      sx={{ position: 'absolute', top: 16, right: 16 }}
                     />
                   )}
                 </CardContent>
