@@ -1,23 +1,17 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
-  Button,
   Tabs,
   Tab,
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  TextField,
   Typography,
   useMediaQuery,
   useTheme,
   SvgIcon,
-  MenuItem,
-  Alert,
-  Collapse,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { SelectChangeEvent } from '@mui/material/Select';
 import { useNavigate } from 'react-router-dom';
 
 interface FAQItem {
@@ -26,31 +20,31 @@ interface FAQItem {
   answer: string;
 }
 
-interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  service: string;
-  message: string;
-}
+// interface FormData {
+//   firstName: string;
+//   lastName: string;
+//   email: string;
+//   phone: string;
+//   service: string;
+//   message: string;
+// }
 
 type TabType = 'faq' | 'contact';
 
 const HelpWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<TabType>('faq');
-  const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: '',
-  });
+  // const [formData, setFormData] = useState<FormData>({
+  //   firstName: '',
+  //   lastName: '',
+  //   email: '',
+  //   phone: '',
+  //   service: '',
+  //   message: '',
+  // });
 
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [showError, setShowError] = useState<string | null>(null);
+  // const [showSuccess, setShowSuccess] = useState(false);
+  // const [showError, setShowError] = useState<string | null>(null);
 
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
@@ -69,45 +63,45 @@ const HelpWidget: React.FC = () => {
   const toggleWidget = () => setIsOpen(prev => !prev);
 
   // Accept both text field change events and Select change events
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<string>
-  ) => {
-    // normalize to { name, value }
-    const target = e.target as EventTarget & { name?: string; value?: any };
-    const name = target.name as keyof FormData | undefined;
-    const value = target.value as string | undefined;
+  // const handleInputChange = (
+  //   e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<string>
+  // ) => {
+  //   // normalize to { name, value }
+  //   const target = e.target as EventTarget & { name?: string; value?: any };
+  //   const name = target.name as keyof FormData | undefined;
+  //   const value = target.value as string | undefined;
 
-    if (!name) return;
-    setFormData(prev => ({ ...prev, [name]: value ?? '' }));
-  };
+  //   if (!name) return;
+  //   setFormData(prev => ({ ...prev, [name]: value ?? '' }));
+  // };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
 
-    // Basic validation (required fields)
-    if (!formData.firstName.trim() || !formData.lastName.trim() || !formData.email.trim() || !formData.message.trim()) {
-      setShowError('Please fill in all required fields.');
-      setShowSuccess(false);
-      return;
-    }
+  //   // Basic validation (required fields)
+  //   if (!formData.firstName.trim() || !formData.lastName.trim() || !formData.email.trim() || !formData.message.trim()) {
+  //     setShowError('Please fill in all required fields.');
+  //     setShowSuccess(false);
+  //     return;
+  //   }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      setShowError('Please enter a valid email address.');
-      setShowSuccess(false);
-      return;
-    }
+  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  //   if (!emailRegex.test(formData.email)) {
+  //     setShowError('Please enter a valid email address.');
+  //     setShowSuccess(false);
+  //     return;
+  //   }
 
-    // Simulate success (replace with your API call)
-    setShowSuccess(true);
-    setShowError(null);
+  //   // Simulate success (replace with your API call)
+  //   setShowSuccess(true);
+  //   setShowError(null);
 
-    // Reset form
-    setFormData({ firstName: '', lastName: '', email: '', phone: '', service: '', message: '' });
+  //   // Reset form
+  //   setFormData({ firstName: '', lastName: '', email: '', phone: '', service: '', message: '' });
 
-    // Auto-hide success message after 5 seconds
-    setTimeout(() => setShowSuccess(false), 5000);
-  };
+  //   // Auto-hide success message after 5 seconds
+  //   setTimeout(() => setShowSuccess(false), 5000);
+  // };
 
   // Circle Button Icon
   const CircleIcon = (props: any) => (
@@ -209,7 +203,7 @@ const handleScroll = (id: string) => {
         <Box sx={{ 
           p: 2, 
           overflowY: 'auto', 
-          maxHeight: showSuccess || showError ? 'calc(70vh - 180px)' : 'calc(70vh - 120px)',
+          maxHeight: 'calc(70vh - 180px)',
           transition: 'max-height 0.3s ease'
         }}>
           {activeTab === 'faq' && (
