@@ -20,31 +20,11 @@ interface FAQItem {
   answer: string;
 }
 
-// interface FormData {
-//   firstName: string;
-//   lastName: string;
-//   email: string;
-//   phone: string;
-//   service: string;
-//   message: string;
-// }
-
 type TabType = 'faq' | 'contact';
 
 const HelpWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<TabType>('faq');
-  // const [formData, setFormData] = useState<FormData>({
-  //   firstName: '',
-  //   lastName: '',
-  //   email: '',
-  //   phone: '',
-  //   service: '',
-  //   message: '',
-  // });
-
-  // const [showSuccess, setShowSuccess] = useState(false);
-  // const [showError, setShowError] = useState<string | null>(null);
 
   const theme = useTheme();
   const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
@@ -61,49 +41,22 @@ const HelpWidget: React.FC = () => {
   ];
 
   const toggleWidget = () => setIsOpen(prev => !prev);
+  const navigate = useNavigate();
 
-  // Accept both text field change events and Select change events
-  // const handleInputChange = (
-  //   e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<string>
-  // ) => {
-  //   // normalize to { name, value }
-  //   const target = e.target as EventTarget & { name?: string; value?: any };
-  //   const name = target.name as keyof FormData | undefined;
-  //   const value = target.value as string | undefined;
+  const handleScroll = (id: string) => {
+    navigate("/", { replace: false });
+    const scrollWhenReady = () => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      } else {
+        requestAnimationFrame(scrollWhenReady);
+      }
+    };
+    requestAnimationFrame(scrollWhenReady);
+  };
 
-  //   if (!name) return;
-  //   setFormData(prev => ({ ...prev, [name]: value ?? '' }));
-  // };
-
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-
-  //   // Basic validation (required fields)
-  //   if (!formData.firstName.trim() || !formData.lastName.trim() || !formData.email.trim() || !formData.message.trim()) {
-  //     setShowError('Please fill in all required fields.');
-  //     setShowSuccess(false);
-  //     return;
-  //   }
-
-  //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //   if (!emailRegex.test(formData.email)) {
-  //     setShowError('Please enter a valid email address.');
-  //     setShowSuccess(false);
-  //     return;
-  //   }
-
-  //   // Simulate success (replace with your API call)
-  //   setShowSuccess(true);
-  //   setShowError(null);
-
-  //   // Reset form
-  //   setFormData({ firstName: '', lastName: '', email: '', phone: '', service: '', message: '' });
-
-  //   // Auto-hide success message after 5 seconds
-  //   setTimeout(() => setShowSuccess(false), 5000);
-  // };
-
-  // Circle Button Icon
+  // Circle Button Icons
   const CircleIcon = (props: any) => (
     <SvgIcon {...props} viewBox="0 0 60 60">
       <path d="M60 30C60 51.25 51.25 60 30 60C8.75 60 0 51.25 0 30C0 8.75 8.75 0 30 0C51.25 0 60 8.75 60 30Z" fill="currentColor" stroke="#0b5ed7" />
@@ -127,21 +80,6 @@ const HelpWidget: React.FC = () => {
     </SvgIcon>
   );
 
-  const navigate = useNavigate();
-
-const handleScroll = (id: string) => {
-  navigate("/", { replace: false });
-  const scrollWhenReady = () => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      requestAnimationFrame(scrollWhenReady); // try again next frame
-    }
-  };
-  requestAnimationFrame(scrollWhenReady);
-};
-
   return (
     <>
       {/* Floating Panel */}
@@ -162,55 +100,46 @@ const handleScroll = (id: string) => {
           transition: 'transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.25s ease',
           pointerEvents: isOpen ? 'auto' : 'none',
         }}
+        role="dialog"
+        aria-label="Help widget"
       >
         {/* Header */}
         <Box sx={{ bgcolor: '#0d6efd', color: '#fff', px: 2, py: 1.5 }}>
           <Typography variant="h6">How can we help?</Typography>
         </Box>
 
-        {/* <Box sx={{ position: 'relative' }}>
-          <Collapse in={showSuccess || Boolean(showError)}>
-            <Box sx={{ p: 1 }}>
-              {showSuccess && (
-                <Alert 
-                  severity="success" 
-                  onClose={() => setShowSuccess(false)}
-                  sx={{ fontSize: '0.875rem' }}
-                >
-                  Thanks! Your message has been sent — we'll get back to you soon.
-                </Alert>
-              )}
-              {showError && (
-                <Alert 
-                  severity="error" 
-                  onClose={() => setShowError(null)}
-                  sx={{ fontSize: '0.875rem' }}
-                >
-                  {showError}
-                </Alert>
-              )}
-            </Box>
-          </Collapse>
-        </Box> */}
-
         {/* Tabs */}
-        <Tabs value={activeTab} onChange={(_, val) => setActiveTab(val)} variant="fullWidth">
+        <Tabs value={activeTab} onChange={(_, val) => setActiveTab(val)} variant="fullWidth" aria-label="Help widget tabs">
           <Tab label="FAQ" value="faq" />
-          <Tab onClick={() => {toggleWidget(), setActiveTab('faq'), handleScroll('contact')}} label="Contact" value="contact" />
+          <Tab
+            label="Contact"
+            value="contact"
+            onClick={() => {
+              toggleWidget();
+              setActiveTab('faq');
+              handleScroll('contact');
+            }}
+          />
         </Tabs>
 
         {/* Content */}
-        <Box sx={{ 
-          p: 2, 
-          overflowY: 'auto', 
-          maxHeight: 'calc(70vh - 180px)',
-          transition: 'max-height 0.3s ease'
-        }}>
+        <Box
+          sx={{
+            p: 2,
+            overflowY: 'auto',
+            maxHeight: 'calc(70vh - 180px)',
+            transition: 'max-height 0.3s ease',
+          }}
+        >
           {activeTab === 'faq' && (
             <Box>
-              {faqData.map(item => (
+              {faqData.map((item) => (
                 <Accordion key={item.id}>
-                  <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls={`faq-content-${item.id}`}
+                    id={`faq-header-${item.id}`}
+                  >
                     <Typography variant="body1">{item.question}</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
@@ -223,93 +152,17 @@ const handleScroll = (id: string) => {
             </Box>
           )}
 
-          {/* {activeTab === 'contact' && (
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
-            >
-              <Box sx={{ display: 'flex', gap: 2, flexDirection: isSmall ? 'column' : 'row' }}>
-                <TextField
-                  required
-                  fullWidth
-                  name="firstName"
-                  label="First Name"
-                  value={formData.firstName}
-                  onChange={handleInputChange}
-                />
-                <TextField
-                  required
-                  fullWidth
-                  name="lastName"
-                  label="Last Name"
-                  value={formData.lastName}
-                  onChange={handleInputChange}
-                />
-              </Box>
-              <Box sx={{ display: 'flex', gap: 2, flexDirection: isSmall ? 'column' : 'row' }}>
-                <TextField
-                  required
-                  fullWidth
-                  name="email"
-                  label="Email Address"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                />
-                <TextField
-                  fullWidth
-                  name="phone"
-                  label="Phone Number"
-                  type="tel"
-                  value={formData.phone}
-                  onChange={handleInputChange}
-                />
-              </Box>
-              <TextField
-                select
-                fullWidth
-                name="service"
-                label="Service Interested In"
-                value={formData.service}
-                onChange={handleInputChange}
-                SelectProps={{
-                  MenuProps: {
-                    sx: {
-                      zIndex: 1600,
-                    }
-                  }
-                }}
-              >
-                <MenuItem value="">None</MenuItem>
-                <MenuItem value="basic">Basic Plan</MenuItem>
-                <MenuItem value="standard">Standard Plan</MenuItem>
-                <MenuItem value="ultimate">Ultimate Plan</MenuItem>
-                <MenuItem value="consultation">Free Consultation</MenuItem>
-                <MenuItem value="other">Other</MenuItem>
-              </TextField>
-              <TextField
-                required
-                fullWidth
-                name="message"
-                label="Tell us about your project"
-                multiline
-                rows={3}
-                value={formData.message}
-                onChange={handleInputChange}
-                placeholder="Describe your business needs, timeline, and any specific requirements..."
-              />
-              <Button type="submit" variant="contained" sx={{ mt: 1 }}>
-                Send Message
-              </Button>
-            </Box>
-          )} */}
+          {/* Contact form is still commented out */}
         </Box>
       </Box>
 
       {/* Floating Circle Button */}
       <Box
         onClick={toggleWidget}
+        aria-label={isOpen ? 'Close help widget' : 'Open help widget'}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === 'Enter' && toggleWidget()}
         sx={{
           width: 60,
           height: 60,

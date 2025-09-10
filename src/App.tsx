@@ -85,7 +85,7 @@ function App() {
         </ThemeProvider>
             <Routes>
               <Route index element={<Home />} />
-              <Route path="/about" element={<About />} />
+              <Route path="/about-us" element={<About />} />
               <Route path="/our-work" element={<OurWork />} />
               <Route path="/terms" element={<TermsPage />} />
               <Route path="/privacy" element={<PrivacyPage />} />

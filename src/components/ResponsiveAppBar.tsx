@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 
 const pages = [
   { name: 'Home', link: '/' },
-  { name: 'About', link: '/about' },
+  { name: 'About Us', link: '/about-us' },
   { name: 'Our Work', link: '/our-work' },
 ];
 
@@ -32,11 +32,18 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="sticky" color="primary" elevation={3}>
+    <AppBar
+      position="sticky"
+      color="primary"
+      elevation={3}
+      component="nav"
+      role="navigation"
+      aria-label="Main navigation"
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
-          
-          {/* Logo (works for both desktop & mobile) */}
+
+          {/* Logo */}
           <Box
             component="a"
             href="/"
@@ -50,16 +57,16 @@ function ResponsiveAppBar() {
             <Avatar
               variant="square"
               src={logo}
-              alt="Atomic Rocket Digital"
+              alt="Atomic Rocket Digital Logo"
               sx={{ width: { xs: 120, sm: 150 }, height: 'auto' }}
             />
           </Box>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu */}
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
-              aria-label="open navigation menu"
+              aria-label="Open navigation menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
@@ -74,32 +81,43 @@ function ResponsiveAppBar() {
               transformOrigin={{ vertical: 'top', horizontal: 'left' }}
               open={Boolean(anchorElNav)}
               onClose={() => handleCloseNavMenu()}
+              keepMounted
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.link} onClick={() => handleCloseNavMenu(page.link)}>
+                <MenuItem
+                  key={page.link}
+                  onClick={() => handleCloseNavMenu(page.link)}
+                  component="a"
+                  aria-label={page.name}
+                  href={page.link}
+                >
                   {page.name}
                 </MenuItem>
               ))}
             </Menu>
           </Box>
 
-          {/* Desktop Nav Links */}
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
+          {/* Desktop Links */}
+          <Box component="ul" sx={{ display: { xs: 'none', md: 'flex' }, gap: 2, listStyle: 'none', m: 0, p: 0 }}>
             {pages.map((page) => (
-              <Button
-                key={page.link}
-                onClick={() => handleCloseNavMenu(page.link)}
-                sx={{
-                  color: 'white',
-                  fontWeight: 500,
-                  '&:hover': { backgroundColor: 'rgba(255,255,255,0.1)' },
-                }}
-              >
-                {page.name}
-              </Button>
+              <li key={page.link}>
+                <Button
+                  onClick={() => handleCloseNavMenu(page.link)}
+                  sx={{
+                    color: 'white',
+                    fontWeight: 500,
+                    '&:hover': { backgroundColor: 'rgba(255,255,255,0.1)' },
+                  }}
+                  component="a"
+                  href={page.link}
+                >
+                  {page.name}
+                </Button>
+              </li>
             ))}
           </Box>
+
         </Toolbar>
       </Container>
     </AppBar>

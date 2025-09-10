@@ -7,8 +7,11 @@ const CookieConsent: React.FC = () => {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const accepted = localStorage.getItem(COOKIE_KEY);
-    if (!accepted) setOpen(true);
+    // Check localStorage only once on mount
+    if (typeof window !== "undefined") {
+      const accepted = localStorage.getItem(COOKIE_KEY);
+      if (!accepted) setOpen(true);
+    }
   }, []);
 
   const handleAccept = () => {
@@ -19,7 +22,7 @@ const CookieConsent: React.FC = () => {
   return (
     <Slide direction="up" in={open} mountOnEnter unmountOnExit>
       <Box
-        role="dialog"
+        role="alertdialog"
         aria-live="polite"
         aria-label="Cookie consent"
         sx={{
@@ -40,12 +43,11 @@ const CookieConsent: React.FC = () => {
           justifyContent: "space-between",
           gap: 2,
           zIndex: 2000,
-          border: "1px solid rgba(0,0,0,0.1)"
+          border: "1px solid rgba(0,0,0,0.1)",
         }}
       >
         <Typography variant="body2" sx={{ flex: 1, lineHeight: 1.5 }}>
-          We use cookies to enhance your browsing experience, analyze traffic, and personalize content. 
-          Read our{" "}
+          We use cookies to enhance your browsing experience, analyze traffic, and personalize content.{" "}
           <Link href="/privacy" underline="hover" color="primary">
             Privacy Policy
           </Link>{" "}
@@ -66,6 +68,7 @@ const CookieConsent: React.FC = () => {
             py: 1.5,
             borderRadius: 2,
             fontWeight: 600,
+            mt: { xs: 2, sm: 0 }, // adds spacing for mobile
           }}
         >
           Accept

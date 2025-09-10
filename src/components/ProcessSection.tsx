@@ -5,6 +5,9 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import StepContent from '@mui/material/StepContent';
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
+import { styled } from '@mui/material/styles';
+import { Helmet } from 'react-helmet-async';
 
 const steps = [
   {
@@ -29,20 +32,52 @@ const steps = [
   },
 ];
 
+// Custom connector to center the line
+const CenteredStepConnector = styled(StepConnector)(({ theme }) => ({
+  [`&.${stepConnectorClasses.vertical}`]: {
+    left: '50%',
+    marginLeft: 0,
+    '& .MuiStepConnector-line': {
+      left: '50%',
+      transform: 'translateX(-50%)',
+      minHeight: '50px',
+      borderLeftWidth: 2,
+      borderColor: theme.palette.grey[400],
+    },
+  },
+}));
+
 function ProcessSection() {
+  // JSON-LD for SEO
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "Our Website Development Process",
+    "description": "Follow our 5-step process to transform your business with a new website and automation.",
+    "step": steps.map((step, idx) => ({
+      "@type": "HowToStep",
+      "position": idx + 1,
+      "name": step.label,
+      "text": step.description
+    }))
+  };
+
   return (
     <Box 
       component="section"
-      id='process'
-      sx={{ 
-        py: 5, 
-        backgroundColor: 'grey.100'
-      }}
+      id="process"
+      aria-labelledby="process-heading"
+      sx={{ py: 5, backgroundColor: 'grey.100' }}
     >
+      <Helmet>
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      </Helmet>
+
       <Container maxWidth="xl" sx={{ px: 5, my: 5 }}>
         {/* Header */}
         <Box sx={{ textAlign: 'center', mb: 5 }}>
           <Typography
+            id="process-heading"
             variant="h2"
             component="h2"
             sx={{
@@ -67,42 +102,28 @@ function ProcessSection() {
         </Box>
 
         {/* Stepper */}
-        <Box sx={{ maxWidth: 800, mx: 'auto'}}>
-          <Stepper orientation="vertical" sx={{
-            '.MuiStepConnector-line':{
-                display:'none'
-            },
-            '.MuiStepContent-root':{
-                marginLeft:'11px',
-                color:'black'
-            },
-            '.MuiStepContent-last':{
-                border:'none'
-            },
-            '.css-16h3655-MuiSvgIcon-root-MuiStepIcon-root.Mui-active':{
-                color:'#198754'
-            }
-          }}>
-            {steps.map((step) => (
-              <Step key={step.label} active={true}>
-                <StepLabel
-                >
-                  {step.label}
+        <Box sx={{ maxWidth: 800, mx: 'auto' }}>
+          <Stepper
+            orientation="vertical"
+            connector={<CenteredStepConnector />}
+          >
+            {steps.map((step, idx) => (
+              <Step
+                key={step.label}
+                active
+                role="listitem"
+                aria-current={idx === 0 ? 'step' : undefined}
+              >
+                <StepLabel>
+                  <Typography component="span">{step.label}</Typography>
                 </StepLabel>
                 <StepContent
                   sx={{
-                    borderLeft: '2px solid',
-                    ml: 2,
-                    pl: 3
+                    pl: 3,
+                    color: 'black',
                   }}
                 >
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      lineHeight: 1.6,
-                      pb: 2
-                    }}
-                  >
+                  <Typography variant="body1" sx={{ lineHeight: 1.6, pb: 2 }}>
                     {step.description}
                   </Typography>
                 </StepContent>
