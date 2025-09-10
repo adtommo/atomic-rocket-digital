@@ -226,34 +226,40 @@ const faqData: FAQItem[] = [
       </Box>
 
       {/* Floating Circle Button with hover grow and spring rotation */}
-      <Box
+        <Box
         onClick={toggleWidget}
         sx={{
-          width: 60,
-          height: 60,
-          position: 'fixed',
-          bottom: 24,
-          right: 24,
-          borderRadius: '50%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
-          zIndex: 1600,
-          color: '#0d6efd',
-          transition: 'transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), background-color 0.25s, color 0.25s',
-          transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-          '&:hover': {
+            width: 60,
+            height: 60,
+            position: 'fixed',
+            bottom: 24,
+            right: 24,
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            zIndex: 1600,
+            color: '#0d6efd',
+            transition: 'transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), box-shadow 0.25s, color 0.25s',
+            transform: isOpen ? 'rotate(180deg) scale(1.1)' : 'rotate(0deg) scale(1)',
+            boxShadow: isOpen ? '0 0 15px 5px rgba(13,110,253,0.4)' : '0 0 5px 0 rgba(0,0,0,0.1)',
+            '&:hover': {
             transform: `${isOpen ? 'rotate(180deg)' : 'rotate(0deg)'} scale(1.2)`,
             color: '#0b5ed7',
-          },
+            boxShadow: '0 0 20px 8px rgba(13,110,253,0.5)',
+            },
         }}
-      >
+        >
         <CircleIcon sx={{ width: 60, height: 60 }} />
         <Box sx={{ position: 'absolute' }}>
-          {isOpen ? <CloseIconCustom sx={{ color: '#fff', fontSize: 60 }} /> : <ChatIcon sx={{ color: '#fff', fontSize: 60 }} />}
+            {isOpen ? (
+            <CloseIconCustom sx={{ color: '#fff', fontSize: 60 }} />
+            ) : (
+            <ChatIcon sx={{ color: '#fff', fontSize: 60 }} />
+            )}
         </Box>
-      </Box>
+        </Box>
     </>
   );
 };
