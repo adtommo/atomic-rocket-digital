@@ -96,7 +96,7 @@ function AboutPage() {
                 fontWeight: 400,
                 mb: 4,
                 color: 'rgba(255, 255, 255, 0.9)',
-                maxWidth: 800,
+                maxWidth: '100%',
                 mx: 'auto',
                 lineHeight: 1.6,
                 '@keyframes fadeInUp': {
