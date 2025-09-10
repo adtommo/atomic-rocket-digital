@@ -5,29 +5,80 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
-function HeroSection() {
+interface HeroSectionProps {
+  videoSrc?: string;
+  videoPoster?: string;
+}
+
+function HeroSection({ videoSrc, videoPoster }: HeroSectionProps) {
   return (
     <Box
       component="header"
       sx={{
           py: 8,
           px:2,
-          background: 'linear-gradient(135deg, #000B1E 0%, #0d6efd 100%)',
           position: 'relative',
           overflow: 'hidden',
-          '&::before': {
-            content: '""',
+          // minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          // Fallback gradient background
+          background: 'linear-gradient(135deg, #000B1E 0%, #0d6efd 100%)',
+        }}
+    >
+      {/* Video Background */}
+      {videoSrc && (
+        <Box
+          component="video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={videoPoster}
+          sx={{
             position: 'absolute',
             top: 0,
             left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%)',
-            pointerEvents: 'none'
-          }
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 0,
+          }}
+        >
+          <source src={videoSrc} type="video/mp4" />
+          {/* Fallback for browsers that don't support video */}
+          Your browser does not support the video tag.
+        </Box>
+      )}
+
+      {/* Dark overlay for better text readability */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 11, 30, 0.6)',
+          zIndex: -1,
         }}
-    >
-            {/* Animated background elements */}
+      />
+
+      {/* Subtle gradient overlay */}
+      <Box
+        sx={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%)',
+          pointerEvents: 'none',
+          zIndex: -1,
+        }}
+      />
+            
+      {/* Animated background elements */}
       <Box
         sx={{
           position: 'absolute',
@@ -78,7 +129,8 @@ function HeroSection() {
           animation: 'float3 4s ease-in-out infinite'
         }}
       />
-      <Container maxWidth="xl" >
+      
+      <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
         <Grid 
           container 
           spacing={5}
@@ -101,7 +153,8 @@ function HeroSection() {
                   fontWeight: 'bold',
                   color: 'white',
                   mb: 2,
-                  lineHeight: 1.2
+                  lineHeight: 1.2,
+                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
                 }}
               >
                 Premium, Bespoke, Websites & Automated Solutions for modern businesses
@@ -112,10 +165,11 @@ function HeroSection() {
                 component="p"
                 sx={{
                   fontWeight: 'normal',
-                  color: 'rgba(255, 255, 255, 0.6)',
+                  color: 'rgba(255, 255, 255, 0.9)',
                   mb: 4,
                   lineHeight: 1.6,
-                  fontSize: { xs: '1.1rem', md: '1.25rem' }
+                  fontSize: { xs: '1.1rem', md: '1.25rem' },
+                  textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7)',
                 }}
               >
                 We design and develop responsive mobile-first sites and automations that work for you and your business - fast, reliable, and built to grow!
@@ -134,10 +188,24 @@ function HeroSection() {
                 }}
               >
                 <Button
+                  onClick={() => {
+                    const element = document.getElementById('process');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                   variant='contained'
                   size="large"
-                  href="#process"
-                  sx={{backgroundColor:'#0d6efd', fontWeight:'bold', '&:hover':{backgroundColor:'#0d6dfdd4', color:'#f8f9fa'} }}
+                  sx={{
+                    backgroundColor:'#0d6efd', 
+                    fontWeight:'bold', 
+                    boxShadow: '0 4px 15px rgba(13, 110, 253, 0.4)',
+                    '&:hover':{
+                      backgroundColor:'#0d6dfdd4', 
+                      color:'#f8f9fa',
+                      boxShadow: '0 6px 20px rgba(13, 110, 253, 0.6)',
+                    }
+                  }}
                 >
                   Get Started
                 </Button>
@@ -146,7 +214,17 @@ function HeroSection() {
                   variant="outlined"
                   size="large"
                   href="/about"
-                  sx={{color:'#f8f9fa', borderColor:'#f8f9fa', fontWeight:'bold', '&:hover':{backgroundColor:'#f8f9fa', color:'#000B1E'} }}
+                  sx={{
+                    color:'#f8f9fa', 
+                    borderColor:'#f8f9fa', 
+                    fontWeight:'bold',
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    backdropFilter: 'blur(10px)',
+                    '&:hover':{
+                      backgroundColor:'#f8f9fa', 
+                      color:'#000B1E'
+                    } 
+                  }}
                 >
                   Learn More
                 </Button>
@@ -170,7 +248,8 @@ function HeroSection() {
                 width: '100%',
                 height: '100%',
                 borderRadius: 3,
-                maxWidth: '100%'
+                maxWidth: '100%',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)',
               }}
             />
           </Grid>

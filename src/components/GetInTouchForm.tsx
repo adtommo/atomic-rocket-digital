@@ -62,7 +62,7 @@ function GetInTouchForm() {
     {
       icon: MailIcon,
       title: 'Email Us',
-      details: 'hello@yourwebsite.com',
+      details: 'hello@atomicrocketdigital.com',
       subtitle: 'We\'ll respond within 24 hours'
     },
     // {
@@ -235,7 +235,7 @@ function GetInTouchForm() {
                             borderRadius: 2
                           }}
                         >
-                          Send Message
+                          Send - we usually reply within a few days
                         </Button>
                       </Box>
                     </Grid>

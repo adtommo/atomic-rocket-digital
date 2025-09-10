@@ -47,7 +47,7 @@ const Home = () => {
   return(
     <>
     <ThemeProvider theme={theme}>
-      <HeroSection/>
+      <HeroSection videoSrc="https://cdn.pixabay.com/video/2021/05/08/73478-548608753_large.mp4"/>
       <FeaturesSection/>
       <ProcessSection/>
       <PricingSection/>

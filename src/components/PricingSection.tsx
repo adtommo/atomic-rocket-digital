@@ -79,13 +79,36 @@ function PricingSection() {
       <Container maxWidth="xl" sx={{ px: { xs: 3, md: 5 } }}>
         {/* Header */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography variant="h2" sx={{ fontWeight: 'bold', mb: 2 }}>
+          <Typography
+            variant="h2"
+            component="h2"
+            sx={{
+              fontWeight: 'bold',
+              mb: 2,
+              fontSize: { xs: '2rem', md: '2.5rem' },
+              color:'black'
+            }}
+          >
             Our Plans
           </Typography>
-          <Typography variant="h5" color="text.secondary" sx={{ mb: 1 }}>
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 'normal',
+              color: 'text.secondary',
+              fontSize: { xs: '1.1rem', md: '1.25rem' }
+            }}
+          >
             Each project is unique. Contact us for a free consultation and personalised quote.
           </Typography>
-          <Typography variant="h6" color="text.secondary">
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: 'normal',
+              color: 'text.secondary',
+              fontSize: { xs: '1.1rem', md: '1.25rem' }
+            }}
+          >
             If you prefer to host the site yourself after setup, you only pay the setup fee.
           </Typography>
         </Box>

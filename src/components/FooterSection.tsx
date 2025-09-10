@@ -7,10 +7,26 @@ import IconButton from '@mui/material/IconButton';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { useNavigate } from 'react-router-dom';
 
 function FooterSection() {
+  const navigate = useNavigate();
+
+const handleScroll = (id: string) => {
+  navigate("/", { replace: false });
+  const scrollWhenReady = () => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      requestAnimationFrame(scrollWhenReady); // try again next frame
+    }
+  };
+  requestAnimationFrame(scrollWhenReady);
+};
+
   return (
-    <Box component="footer" sx={{ backgroundColor: '#000B1E', color: 'white'}}>
+    <Box component="footer" sx={{ backgroundColor: '#000B1E', color: 'white' }}>
       <Container maxWidth="xl" sx={{ py: { xs: 4, md: 6 } }}>
         <Grid container spacing={4} justifyContent="center" textAlign="center">
           
@@ -27,11 +43,21 @@ function FooterSection() {
           {/* Links */}
           <Grid size={{xs:12}} >
             <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 3 }}>
-              <Link href="#about" color="inherit" underline="hover">About</Link>
-              <Link href="#services" color="inherit" underline="hover">Services</Link>
-              <Link href="#contact" color="inherit" underline="hover">Contact</Link>
-              <Link href="#terms" color="inherit" underline="hover">Terms & Conditions</Link>
-              <Link href="#privacy" color="inherit" underline="hover">Privacy Policy</Link>
+              <Link sx={{'&:hover':{cursor:'pointer'}}} href="about" color="inherit" underline="hover">
+                About
+              </Link>
+              <Link sx={{'&:hover':{cursor:'pointer'}}} onClick={() => handleScroll('pricing')} color="inherit" underline="hover">
+                Our Plans
+              </Link>
+              <Link sx={{'&:hover':{cursor:'pointer'}}} onClick={() => handleScroll('contact')} color="inherit" underline="hover">
+                Contact
+              </Link>
+              <Link href="/terms" color="inherit" underline="hover">
+                Terms & Conditions
+              </Link>
+              <Link href="/privacy" color="inherit" underline="hover">
+                Privacy Policy
+              </Link>
             </Box>
           </Grid>
 
