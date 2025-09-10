@@ -13,6 +13,10 @@ import { useLayoutEffect } from "react";
 import FeaturedWorkSection from "./components/FeaturedWorkSection";
 import FooterSection from "./components/FooterSection";
 import HelpWidget from "./components/HelpWidget";
+import TermsPage from "./components/TermsPage";
+import PrivacyPage from "./components/PrivacyPage";
+import AccessibilityPage from "./components/AccessibilityPage";
+import CookieConsent from "./components/CookieConsent";
 
 const Wrapper: React.FC<React.PropsWithChildren<{}>> = ({children}) => {
   const location = useLocation();
@@ -83,10 +87,14 @@ function App() {
               <Route index element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/our-work" element={<OurWork />} />
+              <Route path="/terms" element={<TermsPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/accessibility" element={<AccessibilityPage />} />
               <Route path="/404" element={<NotFoundPage/>} />
               <Route path ="*"element={<Navigate replace to="/404" />} />
             </Routes>
         <FooterSection/>
+        <CookieConsent/>
         </Wrapper>
       </BrowserRouter>
     );

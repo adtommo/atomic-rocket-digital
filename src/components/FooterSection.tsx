@@ -58,6 +58,9 @@ const handleScroll = (id: string) => {
               <Link href="/privacy" color="inherit" underline="hover">
                 Privacy Policy
               </Link>
+              <Link href="/accessibility" color="inherit" underline="hover">
+                Accessibility
+              </Link>
             </Box>
           </Grid>
 
