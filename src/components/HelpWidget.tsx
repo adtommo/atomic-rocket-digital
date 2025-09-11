@@ -101,8 +101,7 @@ const HelpWidget: React.FC = () => {
     <SvgIcon {...props} viewBox="0 0 60 60">
       <path
         d="M60 30C60 51.25 51.25 60 30 60C8.75 60 0 51.25 0 30C0 8.75 8.75 0 30 0C51.25 0 60 8.75 60 30Z"
-        fill="currentColor"
-        stroke="#0b5ed7"
+        fill="#0b5ed7"
       />
     </SvgIcon>
   );
@@ -250,18 +249,12 @@ const HelpWidget: React.FC = () => {
           },
         }}
       >
-        <CircleIcon sx={{ width: 60, height: 60 }} component={'symbol'} />
+        <CircleIcon sx={{ width: 60, height: 60 }} />
         <Box sx={{ position: 'absolute' }}>
           {isOpen ? (
-            <CloseIconCustom
-              sx={{ color: '#fff', fontSize: 60 }}
-              component={'symbol'}
-            />
+            <CloseIconCustom sx={{ color: '#fff', fontSize: 60 }} />
           ) : (
-            <ChatIcon
-              sx={{ color: '#fff', fontSize: 60 }}
-              component={'symbol'}
-            />
+            <ChatIcon sx={{ color: '#fff', fontSize: 60 }} />
           )}
         </Box>
       </Box>

@@ -50,6 +50,7 @@ function NotFoundPage() {
       {/* Floating Background Circles */}
       {floatingElements.map((el, idx) => (
         <Box
+          role="presentation"
           key={idx}
           sx={{
             position: 'absolute',

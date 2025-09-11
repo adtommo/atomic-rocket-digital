@@ -11,7 +11,6 @@ import ListItemText from '@mui/material/ListItemText';
 import Chip from '@mui/material/Chip';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import StarIcon from '@mui/icons-material/Star';
-import { Helmet } from 'react-helmet-async';
 
 function PricingSection() {
   const plans = [
@@ -80,21 +79,6 @@ function PricingSection() {
       ],
     },
   ];
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: 'Website Plans',
-    description:
-      'Explore our Basic, Standard, and Ultimate website plans with setup fees and monthly pricing.',
-    offers: plans.map((plan) => ({
-      '@type': 'Offer',
-      name: plan.name,
-      price: plan.price.replace('£', ''),
-      priceCurrency: 'GBP',
-      description: plan.description,
-      url: window.location.href, // optional
-    })),
-  };
 
   return (
     <Box
@@ -102,9 +86,6 @@ function PricingSection() {
       id="pricing"
       sx={{ backgroundColor: 'grey.100', py: 12 }}
     >
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      </Helmet>
       <Container maxWidth="xl" sx={{ px: { xs: 3, md: 5 } }}>
         {/* Header */}
         <Box sx={{ textAlign: 'center', mb: 10 }}>
@@ -150,6 +131,7 @@ function PricingSection() {
           {plans.map((plan) => (
             <Grid size={{ xs: 12, sm: 10, md: 4 }} key={plan.name}>
               <Card
+                data-testid={`plan-card-${plan.name.toLowerCase()}`}
                 sx={{
                   height: '100%',
                   position: 'relative',

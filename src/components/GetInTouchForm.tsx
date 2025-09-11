@@ -24,20 +24,21 @@ function GetInTouchForm() {
     phone: '',
     service: '',
     message: '',
-    honey: '', // honeypot
+    honey: '',
   });
 
+  const [loading, setLoading] = React.useState(false);
   const [showSuccess, setShowSuccess] = React.useState(false);
+  const [showError, setShowError] = React.useState(false);
 
   const handleChange = (event: { target: { name: string; value: string } }) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (event: { preventDefault: () => void }) => {
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-
-    if (formData.honey) return; // honeypot trap
+    if (formData.honey) return;
 
     if (
       !formData.firstName ||
@@ -49,21 +50,44 @@ function GetInTouchForm() {
       return;
     }
 
-    console.log('Form submitted:', formData);
-    setShowSuccess(true);
+    try {
+      setLoading(true);
 
-    setFormData({
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: '',
-      honey: '',
-    });
+      const webAppUrl =
+        'https://script.google.com/macros/s/AKfycbzQQMOm4fokWIHrYOOr5lNg_2cJlFaxMj97bkUtbOMw0zoz5_p5hQueWTyLoimaUJ2DsA/exec';
+      const payload = new URLSearchParams({ ...formData });
+
+      const response = await fetch(webAppUrl, {
+        method: 'POST',
+        body: payload,
+      });
+
+      const result = await response.json();
+
+      if (result.result === 'success') {
+        setShowSuccess(true);
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          service: '',
+          message: '',
+          honey: '',
+        });
+      } else {
+        setShowError(true);
+      }
+    } catch (err) {
+      console.error(err);
+      setShowError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCloseSuccess = () => setShowSuccess(false);
+  const handleCloseError = () => setShowError(false);
 
   const contactInfo = [
     {
@@ -117,7 +141,7 @@ function GetInTouchForm() {
         <Grid container spacing={4} justifyContent="center">
           {/* Contact Form */}
           <Grid size={{ xs: 12, lg: 8 }}>
-            <Card sx={{ boxShadow: 3 }}>
+            <Card sx={{ boxShadow: 3, position: 'relative' }}>
               <CardContent sx={{ p: { xs: 3, sm: 5 } }}>
                 <Typography
                   variant="h4"
@@ -140,7 +164,7 @@ function GetInTouchForm() {
                         label="First Name"
                         value={formData.firstName}
                         onChange={handleChange}
-                        inputProps={{ 'aria-required': true }}
+                        disabled={loading}
                       />
                     </Grid>
                     <Grid size={{ xs: 12, sm: 6 }}>
@@ -151,7 +175,7 @@ function GetInTouchForm() {
                         label="Last Name"
                         value={formData.lastName}
                         onChange={handleChange}
-                        inputProps={{ 'aria-required': true }}
+                        disabled={loading}
                       />
                     </Grid>
                     <Grid size={{ xs: 12, sm: 6 }}>
@@ -163,7 +187,7 @@ function GetInTouchForm() {
                         type="email"
                         value={formData.email}
                         onChange={handleChange}
-                        inputProps={{ 'aria-required': true }}
+                        disabled={loading}
                       />
                     </Grid>
                     <Grid size={{ xs: 12, sm: 6 }}>
@@ -174,10 +198,11 @@ function GetInTouchForm() {
                         type="tel"
                         value={formData.phone}
                         onChange={handleChange}
+                        disabled={loading}
                       />
                     </Grid>
                     <Grid size={{ xs: 12 }}>
-                      <FormControl fullWidth>
+                      <FormControl fullWidth disabled={loading}>
                         <InputLabel id="service-label">
                           Service Interested In
                         </InputLabel>
@@ -207,13 +232,13 @@ function GetInTouchForm() {
                         rows={4}
                         value={formData.message}
                         onChange={handleChange}
-                        placeholder="Describe your business needs, timeline, and any specific requirements..."
-                        inputProps={{ 'aria-required': true }}
+                        disabled={loading}
                       />
                     </Grid>
 
                     {/* Honeypot */}
                     <input
+                      data-testid="honeypot"
                       type="text"
                       name="honey"
                       value={formData.honey}
@@ -235,13 +260,33 @@ function GetInTouchForm() {
                             fontWeight: 600,
                             borderRadius: 2,
                           }}
+                          disabled={loading}
                         >
-                          Send - we usually reply within a few days
+                          {loading
+                            ? 'Sending...'
+                            : 'Send - we usually reply within a few days'}
                         </Button>
                       </Box>
                     </Grid>
                   </Grid>
                 </Box>
+
+                {/* Grey overlay while sending */}
+                {loading && (
+                  <Box
+                    data-testid="loading-overlay"
+                    sx={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      bgcolor: 'rgba(255,255,255,0.6)',
+                      zIndex: 10,
+                      borderRadius: 1,
+                    }}
+                  />
+                )}
               </CardContent>
             </Card>
           </Grid>
@@ -316,6 +361,7 @@ function GetInTouchForm() {
           autoHideDuration={6000}
           onClose={handleCloseSuccess}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          sx={{ zIndex: 1800 }}
         >
           <Alert
             onClose={handleCloseSuccess}
@@ -324,6 +370,23 @@ function GetInTouchForm() {
           >
             Thank you! Your message has been sent successfully. We&apos;ll get
             back to you soon.
+          </Alert>
+        </Snackbar>
+
+        {/* Error Snackbar */}
+        <Snackbar
+          open={showError}
+          autoHideDuration={6000}
+          onClose={handleCloseError}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+          sx={{ zIndex: 1800 }}
+        >
+          <Alert
+            onClose={handleCloseError}
+            severity="error"
+            sx={{ width: '100%' }}
+          >
+            Oops! Something went wrong. Please try again later.
           </Alert>
         </Snackbar>
       </Container>

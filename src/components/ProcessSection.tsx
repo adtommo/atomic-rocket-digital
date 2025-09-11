@@ -55,21 +55,6 @@ const CenteredStepConnector = styled(StepConnector)(({ theme }) => ({
 }));
 
 function ProcessSection() {
-  // JSON-LD for SEO
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'HowTo',
-    name: 'Our Website Development Process',
-    description:
-      'Follow our 5-step process to transform your business with a new website and automation.',
-    step: steps.map((step, idx) => ({
-      '@type': 'HowToStep',
-      position: idx + 1,
-      name: step.label,
-      text: step.description,
-    })),
-  };
-
   return (
     <Box
       component="section"
@@ -77,10 +62,6 @@ function ProcessSection() {
       aria-labelledby="process-heading"
       sx={{ py: 5, backgroundColor: 'grey.100' }}
     >
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      </Helmet>
-
       <Container maxWidth="xl" sx={{ px: 5, my: 5 }}>
         {/* Header */}
         <Box sx={{ textAlign: 'center', mb: 5 }}>
