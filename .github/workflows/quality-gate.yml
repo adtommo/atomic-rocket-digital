@@ -16,7 +16,7 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     outputs:
-      node_modules-key: ${{ steps.cache-node-modules.outputs.key }}
+      cache-key: ${{ steps.cache-node-modules.outputs.key }}
     steps:
       - uses: actions/checkout@v4
 
@@ -29,11 +29,9 @@ jobs:
         with:
           version: 9
 
-      # Full dependencies for runtime jobs
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Cache node_modules for downstream jobs
       - name: Cache node_modules
         id: cache-node-modules
         uses: actions/cache@v3
@@ -41,7 +39,7 @@ jobs:
           path: node_modules
           key: node-modules-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-  # 2️⃣ Lint (dev dependencies only)
+  # 2️⃣ Lint
   lint:
     runs-on: ubuntu-latest
     needs: setup
@@ -51,12 +49,15 @@ jobs:
         uses: pnpm/action-setup@v4.1.0
         with:
           version: 9
-      - name: Install dev dependencies
-        run: pnpm install --only-dev
+      - name: Restore node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ needs.setup.outputs.cache-key }}
       - run: pnpm lint
       - run: pnpm format:check
 
-  # 3️⃣ Type-check (dev dependencies only)
+  # 3️⃣ Type-check
   type-check:
     runs-on: ubuntu-latest
     needs: setup
@@ -66,8 +67,11 @@ jobs:
         uses: pnpm/action-setup@v4.1.0
         with:
           version: 9
-      - name: Install dev dependencies
-        run: pnpm install --only-dev
+      - name: Restore node_modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ needs.setup.outputs.cache-key }}
       - run: pnpm tsc --noEmit
 
   # 4️⃣ Test
@@ -84,7 +88,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ needs.setup.outputs.cache-key }}
       - run: pnpm test
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
@@ -106,7 +110,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ needs.setup.outputs.cache-key }}
       - run: pnpm build
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
@@ -132,7 +136,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: node-modules-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ needs.setup.outputs.cache-key }}
       - name: Run TruffleHog
         uses: trufflesecurity/trufflehog@v3.90.5
         with:
