@@ -1,10 +1,8 @@
 name: Quality Gate
 
 on:
-  pull_request:
-    branches: [ master ]
   push:
-    branches: [ master ]
+  pull_request:
 
 permissions:
   contents: read
@@ -12,24 +10,24 @@ permissions:
   security-events: write
 
 jobs:
-  # 1️⃣ Setup Node + PNPM + install all dependencies
+  # 1️⃣ Setup Node + PNPM + dependencies
   setup:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     outputs:
-      cache-key: ${{ steps.cache-node-modules.outputs.cache-hit }}
+      cache-hit: ${{ steps.cache-node-modules.outputs.cache-hit }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: "pnpm"
+          node-version: 23.1.0
+          cache: 'pnpm'
 
-      - name: Install PNPM
-        uses: pnpm/action-setup@v4.1.0
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 9.12.3
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -43,21 +41,21 @@ jobs:
 
   # 2️⃣ Lint
   lint:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     needs: setup
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: "pnpm"
+          node-version: 23.1.0
+          cache: 'pnpm'
 
-      - name: Install PNPM
-        uses: pnpm/action-setup@v4.1.0
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 9.12.3
 
       - name: Restore node_modules
         uses: actions/cache@v3
@@ -70,21 +68,21 @@ jobs:
 
   # 3️⃣ Type-check
   type-check:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     needs: setup
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: "pnpm"
+          node-version: 23.1.0
+          cache: 'pnpm'
 
-      - name: Install PNPM
-        uses: pnpm/action-setup@v4.1.0
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 9.12.3
 
       - name: Restore node_modules
         uses: actions/cache@v3
@@ -96,21 +94,21 @@ jobs:
 
   # 4️⃣ Test
   test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     needs: setup
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: "pnpm"
+          node-version: 23.1.0
+          cache: 'pnpm'
 
-      - name: Install PNPM
-        uses: pnpm/action-setup@v4.1.0
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 9.12.3
 
       - name: Restore node_modules
         uses: actions/cache@v3
@@ -127,21 +125,21 @@ jobs:
 
   # 5️⃣ Build
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     needs: setup
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: "pnpm"
+          node-version: 23.1.0
+          cache: 'pnpm'
 
-      - name: Install PNPM
-        uses: pnpm/action-setup@v4.1.0
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 9.12.3
 
       - name: Restore node_modules
         uses: actions/cache@v3
@@ -160,23 +158,23 @@ jobs:
 
   # 6️⃣ Security scan
   security-scan:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     needs: setup
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: "pnpm"
+          node-version: 23.1.0
+          cache: 'pnpm'
 
-      - name: Install PNPM
-        uses: pnpm/action-setup@v4.1.0
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 9.12.3
 
       - name: Restore node_modules
         uses: actions/cache@v3
@@ -197,7 +195,7 @@ jobs:
 
   # 7️⃣ CodeQL
   codeql:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     needs: setup
     permissions:
       security-events: write
@@ -206,16 +204,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: "pnpm"
+          node-version: 23.1.0
+          cache: 'pnpm'
 
-      - name: Install PNPM
-        uses: pnpm/action-setup@v4.1.0
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 9.12.3
 
       - uses: github/codeql-action/init@v3
         with:
@@ -226,7 +224,7 @@ jobs:
 
   # 8️⃣ Final Quality Gate
   quality-gate:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     needs: [lint, type-check, test, build, security-scan, codeql]
     if: always()
     steps:
