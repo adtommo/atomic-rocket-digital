@@ -12,19 +12,21 @@ permissions:
   security-events: write
 
 jobs:
-  # 1️⃣ Setup Node + pnpm + full dependencies
+  # 1️⃣ Setup Node + PNPM + install all dependencies
   setup:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     outputs:
-      cache-key: ${{ steps.cache-node-modules.outputs.key }}
+      cache-key: ${{ steps.cache-node-modules.outputs.cache-hit }}
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: "pnpm"
 
-      - name: Setup pnpm
+      - name: Install PNPM
         uses: pnpm/action-setup@v4.1.0
         with:
           version: 9
@@ -41,54 +43,81 @@ jobs:
 
   # 2️⃣ Lint
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: setup
     steps:
       - uses: actions/checkout@v4
-      - name: Setup pnpm
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install PNPM
         uses: pnpm/action-setup@v4.1.0
         with:
           version: 9
+
       - name: Restore node_modules
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{ needs.setup.outputs.cache-key }}
+          key: node-modules-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+
       - run: pnpm lint
       - run: pnpm format:check
 
   # 3️⃣ Type-check
   type-check:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: setup
     steps:
       - uses: actions/checkout@v4
-      - name: Setup pnpm
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install PNPM
         uses: pnpm/action-setup@v4.1.0
         with:
           version: 9
+
       - name: Restore node_modules
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{ needs.setup.outputs.cache-key }}
+          key: node-modules-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+
       - run: pnpm tsc --noEmit
 
   # 4️⃣ Test
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: setup
     steps:
       - uses: actions/checkout@v4
-      - name: Setup pnpm
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install PNPM
         uses: pnpm/action-setup@v4.1.0
         with:
           version: 9
+
       - name: Restore node_modules
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{ needs.setup.outputs.cache-key }}
+          key: node-modules-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+
       - run: pnpm test
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
@@ -98,19 +127,28 @@ jobs:
 
   # 5️⃣ Build
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: setup
     steps:
       - uses: actions/checkout@v4
-      - name: Setup pnpm
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install PNPM
         uses: pnpm/action-setup@v4.1.0
         with:
           version: 9
+
       - name: Restore node_modules
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{ needs.setup.outputs.cache-key }}
+          key: node-modules-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+
       - run: pnpm build
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
@@ -122,34 +160,44 @@ jobs:
 
   # 6️⃣ Security scan
   security-scan:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: setup
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Setup pnpm
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install PNPM
         uses: pnpm/action-setup@v4.1.0
         with:
           version: 9
+
       - name: Restore node_modules
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{ needs.setup.outputs.cache-key }}
+          key: node-modules-${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+
       - name: Run TruffleHog
         uses: trufflesecurity/trufflehog@v3.90.5
         with:
           path: .
           github_token: ${{ secrets.GITHUB_TOKEN }}
           extra_args: --only-verified --fail
+
       - name: Run pnpm audit
         run: pnpm audit --audit-level=moderate
         continue-on-error: true
 
   # 7️⃣ CodeQL
   codeql:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: setup
     permissions:
       security-events: write
@@ -157,6 +205,18 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: Install PNPM
+        uses: pnpm/action-setup@v4.1.0
+        with:
+          version: 9
+
       - uses: github/codeql-action/init@v3
         with:
           languages: javascript, typescript
@@ -166,7 +226,7 @@ jobs:
 
   # 8️⃣ Final Quality Gate
   quality-gate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: [lint, type-check, test, build, security-scan, codeql]
     if: always()
     steps:
