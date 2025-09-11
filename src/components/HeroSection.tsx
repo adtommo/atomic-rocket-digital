@@ -26,12 +26,12 @@ function HeroSection({ videoSrc, videoPoster }: HeroSectionProps) {
       }}
     >
       <Helmet>
-  <title>Atomic Rocket Digital | Bespoke Websites & Automations</title>
-  <meta 
-    name="description" 
-    content="Atomic Rocket Digital creates bespoke websites and automations to help UK businesses grow faster and smarter online." 
-  />
-</Helmet>
+        <title>Atomic Rocket Digital | Bespoke Websites & Automations</title>
+        <meta
+          name="description"
+          content="Atomic Rocket Digital creates bespoke websites and automations to help UK businesses grow faster and smarter online."
+        />
+      </Helmet>
       {/* Video Background */}
       {videoSrc && (
         <Box
@@ -71,7 +71,8 @@ function HeroSection({ videoSrc, videoPoster }: HeroSectionProps) {
         sx={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%)',
+          background:
+            'radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%)',
           pointerEvents: 'none',
           zIndex: -1,
         }}
@@ -79,9 +80,30 @@ function HeroSection({ videoSrc, videoPoster }: HeroSectionProps) {
 
       {/* Floating elements */}
       {[
-        { top: '10%', left: '10%', size: 200, opacity: 0.1, anim: 'float1', duration: 8 },
-        { top: '60%', right: '15%', size: 150, opacity: 0.08, anim: 'float2', duration: 6 },
-        { bottom: '10%', left: '20%', size: 100, opacity: 0.06, anim: 'float3', duration: 4 },
+        {
+          top: '10%',
+          left: '10%',
+          size: 200,
+          opacity: 0.1,
+          anim: 'float1',
+          duration: 8,
+        },
+        {
+          top: '60%',
+          right: '15%',
+          size: 150,
+          opacity: 0.08,
+          anim: 'float2',
+          duration: 6,
+        },
+        {
+          bottom: '10%',
+          left: '20%',
+          size: 100,
+          opacity: 0.06,
+          anim: 'float3',
+          duration: 4,
+        },
       ].map((el, idx) => (
         <Box
           key={idx}
@@ -115,8 +137,14 @@ function HeroSection({ videoSrc, videoPoster }: HeroSectionProps) {
       <Container maxWidth="xl" sx={{ position: 'relative', zIndex: 1 }}>
         <Grid container spacing={5} alignItems="center" justifyContent="center">
           {/* Text Column */}
-          <Grid size={{xl:6, lg:7, md:8}} >
-            <Box sx={{ my: 5, textAlign: { xs: 'center', md: 'left' }, pr: { md: 4 } }}>
+          <Grid size={{ xl: 6, lg: 7, md: 8 }}>
+            <Box
+              sx={{
+                my: 5,
+                textAlign: { xs: 'center', md: 'left' },
+                pr: { md: 4 },
+              }}
+            >
               <Typography
                 variant="h1"
                 component="h1"
@@ -129,7 +157,8 @@ function HeroSection({ videoSrc, videoPoster }: HeroSectionProps) {
                   textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)',
                 }}
               >
-                Premium, Bespoke Websites & Automated Solutions for Modern Businesses
+                Premium, Bespoke Websites & Automated Solutions for Modern
+                Businesses
               </Typography>
 
               <Typography
@@ -144,14 +173,18 @@ function HeroSection({ videoSrc, videoPoster }: HeroSectionProps) {
                   textShadow: '1px 1px 3px rgba(0, 0, 0, 0.7)',
                 }}
               >
-                We design and develop responsive mobile-first sites and automations that work for you and your business – fast, reliable, and built to grow!
+                We design and develop responsive mobile-first sites and
+                automations that work for you and your business – fast,
+                reliable, and built to grow!
               </Typography>
 
               <Stack
                 direction={{ xs: 'column', sm: 'row' }}
                 spacing={3}
                 justifyContent={{ xs: 'center', md: 'flex-start' }}
-                sx={{ '& .MuiButton-root': { px: 4, py: 1.5, fontSize: '1.1rem' } }}
+                sx={{
+                  '& .MuiButton-root': { px: 4, py: 1.5, fontSize: '1.1rem' },
+                }}
               >
                 <Button
                   onClick={() => {
@@ -195,7 +228,7 @@ function HeroSection({ videoSrc, videoPoster }: HeroSectionProps) {
 
           {/* Image Column */}
           <Grid
-            size={{xl:6, lg:5}}
+            size={{ xl: 6, lg: 5 }}
             sx={{
               display: { xs: 'none', lg: 'flex' },
               justifyContent: 'center',

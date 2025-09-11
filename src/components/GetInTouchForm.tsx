@@ -31,7 +31,7 @@ function GetInTouchForm() {
 
   const handleChange = (event: { target: { name: string; value: string } }) => {
     const { name, value } = event.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (event: { preventDefault: () => void }) => {
@@ -39,12 +39,17 @@ function GetInTouchForm() {
 
     if (formData.honey) return; // honeypot trap
 
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
-      alert("Please fill in all required fields.");
+    if (
+      !formData.firstName ||
+      !formData.lastName ||
+      !formData.email ||
+      !formData.message
+    ) {
+      alert('Please fill in all required fields.');
       return;
     }
 
-    console.log("Form submitted:", formData);
+    console.log('Form submitted:', formData);
     setShowSuccess(true);
 
     setFormData({
@@ -54,27 +59,58 @@ function GetInTouchForm() {
       phone: '',
       service: '',
       message: '',
-      honey: ''
+      honey: '',
     });
   };
 
   const handleCloseSuccess = () => setShowSuccess(false);
 
   const contactInfo = [
-    { icon: MailIcon, title: 'Email Us', details: 'hello@atomicrocketdigital.com', subtitle: "We'll respond within a few days" },
-    { icon: PlaceIcon, title: 'Visit Us', details: 'Liverpool, United Kingdom', subtitle: 'Virtual meetings available' },
+    {
+      icon: MailIcon,
+      title: 'Email Us',
+      details: 'hello@atomicrocketdigital.com',
+      subtitle: "We'll respond within a few days",
+    },
+    {
+      icon: PlaceIcon,
+      title: 'Visit Us',
+      details: 'Liverpool, United Kingdom',
+      subtitle: 'Virtual meetings available',
+    },
   ];
 
   return (
-    <Box component="section" id="contact" sx={{ py: 6, backgroundColor: '#f8f9fa', color: '#000B1E' }}>
+    <Box
+      component="section"
+      id="contact"
+      sx={{ py: 6, backgroundColor: '#f8f9fa', color: '#000B1E' }}
+    >
       <Container maxWidth="xl">
         {/* Header */}
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography variant="h2" sx={{ fontWeight: 'bold', mb: 2, fontSize: { xs: '2rem', md: '2.5rem' } }}>
+          <Typography
+            variant="h2"
+            sx={{
+              fontWeight: 'bold',
+              mb: 2,
+              fontSize: { xs: '2rem', md: '2.5rem' },
+            }}
+          >
             Get In Touch
           </Typography>
-          <Typography variant="h5" sx={{ fontWeight: 'normal', color: 'text.secondary', fontSize: { xs: '1.1rem', md: '1.25rem' }, maxWidth: 600, mx: 'auto' }}>
-            Ready to transform your business? Let's discuss your project and find the perfect solution for your needs.
+          <Typography
+            variant="h5"
+            sx={{
+              fontWeight: 'normal',
+              color: 'text.secondary',
+              fontSize: { xs: '1.1rem', md: '1.25rem' },
+              maxWidth: 600,
+              mx: 'auto',
+            }}
+          >
+            Ready to transform your business? Let&apos;s discuss your project
+            and find the perfect solution for your needs.
           </Typography>
         </Box>
 
@@ -83,11 +119,18 @@ function GetInTouchForm() {
           <Grid size={{ xs: 12, lg: 8 }}>
             <Card sx={{ boxShadow: 3 }}>
               <CardContent sx={{ p: { xs: 3, sm: 5 } }}>
-                <Typography variant="h4" sx={{ fontWeight: 600, mb: 3, textAlign: 'center' }}>
+                <Typography
+                  variant="h4"
+                  sx={{ fontWeight: 600, mb: 3, textAlign: 'center' }}
+                >
                   Send Us a Message
                 </Typography>
 
-                <Box component="form" onSubmit={handleSubmit} aria-label="Contact form">
+                <Box
+                  component="form"
+                  onSubmit={handleSubmit}
+                  aria-label="Contact form"
+                >
                   <Grid container spacing={2}>
                     <Grid size={{ xs: 12, sm: 6 }}>
                       <TextField
@@ -135,7 +178,9 @@ function GetInTouchForm() {
                     </Grid>
                     <Grid size={{ xs: 12 }}>
                       <FormControl fullWidth>
-                        <InputLabel id="service-label">Service Interested In</InputLabel>
+                        <InputLabel id="service-label">
+                          Service Interested In
+                        </InputLabel>
                         <Select
                           labelId="service-label"
                           name="service"
@@ -145,7 +190,9 @@ function GetInTouchForm() {
                           <MenuItem value="basic">Basic Plan</MenuItem>
                           <MenuItem value="standard">Standard Plan</MenuItem>
                           <MenuItem value="ultimate">Ultimate Plan</MenuItem>
-                          <MenuItem value="consultation">Free Consultation</MenuItem>
+                          <MenuItem value="consultation">
+                            Free Consultation
+                          </MenuItem>
                           <MenuItem value="other">Other</MenuItem>
                         </Select>
                       </FormControl>
@@ -166,7 +213,13 @@ function GetInTouchForm() {
                     </Grid>
 
                     {/* Honeypot */}
-                    <input type="text" name="honey" value={formData.honey} onChange={handleChange} style={{ display: 'none' }} />
+                    <input
+                      type="text"
+                      name="honey"
+                      value={formData.honey}
+                      onChange={handleChange}
+                      style={{ display: 'none' }}
+                    />
 
                     <Grid size={{ xs: 12 }}>
                       <Box sx={{ textAlign: 'center', mt: 2 }}>
@@ -174,7 +227,14 @@ function GetInTouchForm() {
                           type="submit"
                           variant="contained"
                           size="large"
-                          sx={{ width: { xs: '100%', sm: 'auto' }, px: { sm: 6 }, py: 1.5, fontSize: '1.1rem', fontWeight: 600, borderRadius: 2 }}
+                          sx={{
+                            width: { xs: '100%', sm: 'auto' },
+                            px: { sm: 6 },
+                            py: 1.5,
+                            fontSize: '1.1rem',
+                            fontWeight: 600,
+                            borderRadius: 2,
+                          }}
                         >
                           Send - we usually reply within a few days
                         </Button>
@@ -189,7 +249,14 @@ function GetInTouchForm() {
           {/* Contact Information */}
           <Grid size={{ xs: 12, lg: 4 }}>
             <Box sx={{ pl: { lg: 2 } }}>
-              <Typography variant="h5" sx={{ fontWeight: 600, mb: 4, textAlign: { xs: 'center', lg: 'left' } }}>
+              <Typography
+                variant="h5"
+                sx={{
+                  fontWeight: 600,
+                  mb: 4,
+                  textAlign: { xs: 'center', lg: 'left' },
+                }}
+              >
                 Other Ways to Reach Us
               </Typography>
 
@@ -209,15 +276,30 @@ function GetInTouchForm() {
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            mr: 2
+                            mr: 2,
                           }}
                         >
                           <IconComponent aria-hidden="true" />
                         </Box>
                         <Box>
-                          <Typography variant="h6" sx={{ fontWeight: 600, mb: 0.5 }}>{info.title}</Typography>
-                          <Typography variant="body1" sx={{ color: 'text.primary', mb: 0.5 }}>{info.details}</Typography>
-                          <Typography variant="body2" sx={{ color: 'text.secondary' }}>{info.subtitle}</Typography>
+                          <Typography
+                            variant="h6"
+                            sx={{ fontWeight: 600, mb: 0.5 }}
+                          >
+                            {info.title}
+                          </Typography>
+                          <Typography
+                            variant="body1"
+                            sx={{ color: 'text.primary', mb: 0.5 }}
+                          >
+                            {info.details}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            sx={{ color: 'text.secondary' }}
+                          >
+                            {info.subtitle}
+                          </Typography>
                         </Box>
                       </Box>
                     </CardContent>
@@ -229,9 +311,19 @@ function GetInTouchForm() {
         </Grid>
 
         {/* Success Snackbar */}
-        <Snackbar open={showSuccess} autoHideDuration={6000} onClose={handleCloseSuccess} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
-          <Alert onClose={handleCloseSuccess} severity="success" sx={{ width: '100%' }}>
-            Thank you! Your message has been sent successfully. We'll get back to you soon.
+        <Snackbar
+          open={showSuccess}
+          autoHideDuration={6000}
+          onClose={handleCloseSuccess}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        >
+          <Alert
+            onClose={handleCloseSuccess}
+            severity="success"
+            sx={{ width: '100%' }}
+          >
+            Thank you! Your message has been sent successfully. We&apos;ll get
+            back to you soon.
           </Alert>
         </Snackbar>
       </Container>

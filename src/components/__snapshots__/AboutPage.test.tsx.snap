@@ -1,0 +1,202 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AboutPage > matches snapshot 1`] = `
+<div>
+  <main
+    class="MuiBox-root css-0"
+  >
+    <section
+      aria-label="Hero section: About Atomic Rocket Digital"
+      class="MuiBox-root css-da8hf7"
+    >
+      <div
+        class="MuiBox-root css-ed4z65"
+      />
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthLg css-quer5p-MuiContainer-root"
+      >
+        <h1
+          class="MuiTypography-root MuiTypography-h1 css-1rfv8d6-MuiTypography-root"
+        >
+          About Atomic Rocket Digital.
+        </h1>
+        <p
+          class="MuiTypography-root MuiTypography-h5 css-phikpr-MuiTypography-root"
+        >
+          At Atomic Rocket Digital, we create premium, bespoke websites designed specifically for modern businesses. Our focus is on building responsive, mobile-first websites that not only look stunning but work seamlessly across all devices. We understand the importance of speed, reliability, and scalability, so every website we deliver is crafted to grow alongside your business.
+        </p>
+        <button
+          aria-label="Scroll to about section"
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeLarge MuiButton-containedSizeLarge MuiButton-colorPrimary css-eef1qr-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Read our story
+        </button>
+      </div>
+    </section>
+    <section
+      aria-label="Our founding story"
+      class="MuiBox-root css-1c8b2sr"
+      id="scroll-target"
+    >
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthLg css-5c1adp-MuiContainer-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-row MuiGrid-spacing-xs-6 css-mhuym5-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-direction-xs-row MuiGrid-grid-xs-12 MuiGrid-grid-lg-6 css-gdzu2g-MuiGrid-root"
+          >
+            <div
+              class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-1966o7i-MuiPaper-root"
+              style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+              tabindex="0"
+            >
+              <img
+                alt="Our founding story"
+                class="MuiBox-root css-0"
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=1332&auto=format&fit=crop"
+                style="width: 100%; height: auto; display: block;"
+              />
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-direction-xs-row MuiGrid-grid-xs-12 MuiGrid-grid-lg-6 css-gdzu2g-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-a9io3l"
+            >
+              <h2
+                class="MuiTypography-root MuiTypography-h2 css-1exnwyb-MuiTypography-root"
+              >
+                Our founding
+              </h2>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1pzgxok-MuiTypography-root"
+              >
+                Founded with a passion for innovation and digital excellence, Atomic Rocket Digital combines creative design with cutting-edge development to provide solutions tailored to your unique goals. Whether you're just starting out or looking to elevate your online presence, we build websites that help you stand out, connect with your audience, and drive results.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      aria-label="Growth and innovation"
+      class="MuiBox-root css-1c8b2sr"
+    >
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthLg css-5c1adp-MuiContainer-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-row MuiGrid-spacing-xs-6 css-mhuym5-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-direction-xs-row MuiGrid-grid-xs-12 MuiGrid-grid-lg-6 css-ahu91h-MuiGrid-root"
+          >
+            <div
+              class="MuiBox-root css-wia8lv"
+            >
+              <h2
+                class="MuiTypography-root MuiTypography-h2 css-1exnwyb-MuiTypography-root"
+              >
+                Growth & beyond
+              </h2>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-1pzgxok-MuiTypography-root"
+              >
+                Our journey continues to evolve as we push the boundaries of what's possible in web development. We stay ahead of industry trends, embrace emerging technologies, and constantly refine our processes to deliver exceptional results. Every project is an opportunity to innovate and exceed expectations.
+              </p>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-direction-xs-row MuiGrid-grid-xs-12 MuiGrid-grid-lg-6 css-yn1dm9-MuiGrid-root"
+          >
+            <div
+              class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 css-1966o7i-MuiPaper-root"
+              style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+              tabindex="0"
+            >
+              <img
+                alt="Growth and innovation"
+                class="MuiBox-root css-0"
+                loading="lazy"
+                src="https://images.unsplash.com/photo-1565728744382-61accd4aa148?q=80&w=1173&auto=format&fit=crop"
+                style="width: 100%; height: auto; display: block;"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section
+      aria-label="Team section"
+      class="MuiBox-root css-1ir5u2m"
+    >
+      <div
+        class="MuiContainer-root MuiContainer-maxWidthLg css-5c1adp-MuiContainer-root"
+      >
+        <div
+          class="MuiBox-root css-nub3x0"
+        >
+          <h2
+            class="MuiTypography-root MuiTypography-h2 css-1kosoxa-MuiTypography-root"
+          >
+            The Person Behind Atomic Rocket Digital
+          </h2>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-plkvm7-MuiTypography-root"
+          >
+            Turning ideas into Websites and Automations That Work for You
+          </p>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-row MuiGrid-spacing-xs-4 css-oq3wmw-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-direction-xs-row MuiGrid-grid-xs-12 MuiGrid-grid-sm-6 MuiGrid-grid-md-4 css-h3cks1-MuiGrid-root"
+          >
+            <div
+              class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-s03hjm-MuiPaper-root-MuiCard-root"
+              style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
+              tabindex="0"
+            >
+              <div
+                class="MuiCardContent-root css-21mhzp-MuiCardContent-root"
+              >
+                <div
+                  class="MuiAvatar-root MuiAvatar-circular css-54z99p-MuiAvatar-root"
+                >
+                  <img
+                    alt="Adam T"
+                    class="MuiAvatar-img css-1su80sj-MuiAvatar-img"
+                    src="/me.jpg"
+                  />
+                </div>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-19hylkr-MuiTypography-root"
+                >
+                  Adam T
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-1ve6pn7-MuiTypography-root"
+                >
+                  Founder & Computational Alchemist
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-pm11rp-MuiTypography-root"
+                >
+                  Hi, I’m Adam, the founder of Atomic Rocket Digital. I create websites and automations that help businesses work smarter, look great online, and grow efficiently. As a solo founder, I handle every project personally, from the first concept to the final launch, ensuring that every detail meets your vision and goals. I combine technical skills, creativity, and a deep understanding of business needs to deliver solutions that save time and make an impact. When I’m not coding or automating workflows, you might find me exploring the outdoors, brewing coffee, or sketching out ideas for my next project. Let’s build something that works as hard as you do.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+`;
