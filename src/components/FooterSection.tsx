@@ -101,6 +101,7 @@ function FooterSection() {
           <Grid size={{ xs: 12 }}>
             <Box>
               <IconButton
+                component="a"
                 color="inherit"
                 href="https://facebook.com"
                 target="_blank"
@@ -110,6 +111,7 @@ function FooterSection() {
                 <FacebookIcon />
               </IconButton>
               <IconButton
+                component="a"
                 color="inherit"
                 href="https://twitter.com"
                 target="_blank"
@@ -119,6 +121,7 @@ function FooterSection() {
                 <TwitterIcon />
               </IconButton>
               <IconButton
+                component="a"
                 color="inherit"
                 href="https://linkedin.com"
                 target="_blank"

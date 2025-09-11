@@ -13,15 +13,15 @@ import FeaturesSection from './components/FeaturesSection';
 import ProcessSection from './components/ProcessSection';
 import PricingSection from './components/PricingSection';
 import GetInTouchForm from './components/GetInTouchForm';
-import AboutPage from './components/AboutPage';
+import AboutPage from './pages/AboutPage';
 import NotFoundPage from './components/NotFoundPage';
 import { ReactNode, useLayoutEffect } from 'react';
-import FeaturedWorkSection from './components/FeaturedWorkSection';
+import FeaturedWorkPage from './pages/FeaturedWorkPage';
 import FooterSection from './components/FooterSection';
 import HelpWidget from './components/HelpWidget';
-import TermsPage from './components/TermsPage';
-import PrivacyPage from './components/PrivacyPage';
-import AccessibilityPage from './components/AccessibilityPage';
+import TermsPage from './pages/TermsPage';
+import PrivacyPage from './pages/PrivacyPage';
+import AccessibilityPage from './pages/AccessibilityPage';
 import CookieConsent from './components/CookieConsent';
 
 interface WrapperProps {
@@ -82,7 +82,7 @@ const About = () => {
 const OurWork = () => {
   return (
     <>
-      <FeaturedWorkSection />
+      <FeaturedWorkPage />
     </>
   );
 };

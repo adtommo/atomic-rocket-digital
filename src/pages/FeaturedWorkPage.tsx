@@ -22,7 +22,7 @@ const StyledCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-export default function FeaturedWorkSection() {
+export default function FeaturedWorkPage() {
   const featuredWork = [
     {
       id: 1,
