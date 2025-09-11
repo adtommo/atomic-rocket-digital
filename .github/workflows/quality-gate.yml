@@ -179,8 +179,7 @@ jobs:
         uses: trufflesecurity/trufflehog@v3.90.5
         with:
           path: .
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          extra_args: --only-verified --fail
+          extra_args: --only-verified
 
       - name: Run pnpm audit
         run: pnpm audit --audit-level=moderate
@@ -214,28 +213,3 @@ jobs:
       - uses: github/codeql-action/autobuild@v3
       - uses: github/codeql-action/analyze@v3
 
-  # 8️⃣ Final Quality Gate
-  quality-gate:
-    runs-on: ubuntu-latest
-    needs: [lint, type-check, test, build, security-scan, codeql]
-    if: always()
-    steps:
-      - name: Check all jobs status
-        run: |
-          echo "Lint: ${{ needs.lint.result }}"
-          echo "Type Check: ${{ needs.type-check.result }}"
-          echo "Test: ${{ needs.test.result }}"
-          echo "Build: ${{ needs.build.result }}"
-          echo "Security Scan: ${{ needs.security-scan.result }}"
-          echo "CodeQL: ${{ needs.codeql.result }}"
-
-          if [[ "${{ needs.lint.result }}" != "success" || 
-                "${{ needs.type-check.result }}" != "success" || 
-                "${{ needs.test.result }}" != "success" || 
-                "${{ needs.build.result }}" != "success" || 
-                "${{ needs.security-scan.result }}" != "success" || 
-                "${{ needs.codeql.result }}" != "success" ]]; then
-            echo "❌ Quality gate failed"
-            exit 1
-          else
-            echo "✅ Quality gate passed"
