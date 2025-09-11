@@ -8,9 +8,30 @@ function NotFoundPage() {
   const goBack = () => window.history.back();
 
   const floatingElements = [
-    { top: '10%', left: '10%', size: 200, opacity: 0.1, anim: 'float1', duration: 8 },
-    { top: '60%', right: '15%', size: 150, opacity: 0.08, anim: 'float2', duration: 6 },
-    { bottom: '10%', left: '20%', size: 100, opacity: 0.06, anim: 'float3', duration: 4 },
+    {
+      top: '10%',
+      left: '10%',
+      size: 200,
+      opacity: 0.1,
+      anim: 'float1',
+      duration: 8,
+    },
+    {
+      top: '60%',
+      right: '15%',
+      size: 150,
+      opacity: 0.08,
+      anim: 'float2',
+      duration: 6,
+    },
+    {
+      bottom: '10%',
+      left: '20%',
+      size: 100,
+      opacity: 0.06,
+      anim: 'float3',
+      duration: 4,
+    },
   ];
 
   return (
@@ -88,8 +109,8 @@ function NotFoundPage() {
             textShadow: '0 4px 20px rgba(0,0,0,0.3)',
             animation: 'slideInUp 1s ease-out 0.3s both',
             '@keyframes slideInUp': {
-              'from': { opacity: 0, transform: 'translateY(30px)' },
-              'to': { opacity: 1, transform: 'translateY(0)' },
+              from: { opacity: 0, transform: 'translateY(30px)' },
+              to: { opacity: 1, transform: 'translateY(0)' },
             },
           }}
         >
@@ -112,7 +133,8 @@ function NotFoundPage() {
             },
           }}
         >
-          The page you're looking for seems to have launched into orbit. Our mission control is here to help you get back on track!
+          The page you&apos;re looking for seems to have launched into orbit.
+          Our mission control is here to help you get back on track!
         </Typography>
 
         {/* Go Back Button */}

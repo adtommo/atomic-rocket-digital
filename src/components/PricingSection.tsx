@@ -20,7 +20,8 @@ function PricingSection() {
       price: '£40',
       period: '/ mo.',
       setup: '£200 setup fee',
-      description: 'A simple online presence with essential features to get your business started.',
+      description:
+        'A simple online presence with essential features to get your business started.',
       badge: null,
       features: [
         { type: 'header', text: 'Domain & Hosting' },
@@ -39,7 +40,8 @@ function PricingSection() {
       price: '£65',
       period: '/ mo.',
       setup: '£400 setup fee',
-      description: 'A solid base plan to grow your customer base with enhanced features.',
+      description:
+        'A solid base plan to grow your customer base with enhanced features.',
       badge: 'popular',
       features: [
         { type: 'header', text: 'Everything in Basic, plus:' },
@@ -58,7 +60,8 @@ function PricingSection() {
       price: '£120',
       period: '/ mo.',
       setup: '£800 setup fee',
-      description: 'Our premium plan for businesses ready to skyrocket with advanced features.',
+      description:
+        'Our premium plan for businesses ready to skyrocket with advanced features.',
       badge: null,
       features: [
         { type: 'header', text: 'Everything in Standard, plus:' },
@@ -70,28 +73,35 @@ function PricingSection() {
         { type: 'feature', text: 'Messaging Integration' },
         { type: 'feature', text: 'Payment Gateway setup' },
         { type: 'header', text: 'Automations' },
-        { type: 'feature', text: 'Advanced workflow automations to streamline your business' },
+        {
+          type: 'feature',
+          text: 'Advanced workflow automations to streamline your business',
+        },
       ],
     },
   ];
   const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "Website Plans",
-  "description": "Explore our Basic, Standard, and Ultimate website plans with setup fees and monthly pricing.",
-  "offers": plans.map((plan) => ({
-    "@type": "Offer",
-    "name": plan.name,
-    "price": plan.price.replace('£', ''),
-    "priceCurrency": "GBP",
-    "description": plan.description,
-    "url": window.location.href // optional
-  }))
-};
-
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'Website Plans',
+    description:
+      'Explore our Basic, Standard, and Ultimate website plans with setup fees and monthly pricing.',
+    offers: plans.map((plan) => ({
+      '@type': 'Offer',
+      name: plan.name,
+      price: plan.price.replace('£', ''),
+      priceCurrency: 'GBP',
+      description: plan.description,
+      url: window.location.href, // optional
+    })),
+  };
 
   return (
-    <Box component="section" id="pricing" sx={{ backgroundColor: 'grey.100', py: 12 }}>
+    <Box
+      component="section"
+      id="pricing"
+      sx={{ backgroundColor: 'grey.100', py: 12 }}
+    >
       <Helmet>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
@@ -101,44 +111,73 @@ function PricingSection() {
           <Typography
             variant="h2"
             component="h2"
-            sx={{ fontWeight: 'bold', mb: 2, fontSize: { xs: '2rem', md: '2.5rem' }, color:'black' }}
+            sx={{
+              fontWeight: 'bold',
+              mb: 2,
+              fontSize: { xs: '2rem', md: '2.5rem' },
+              color: 'black',
+            }}
           >
             Our Plans
           </Typography>
           <Typography
             variant="h5"
-            sx={{ fontWeight: 'normal', color: 'text.secondary', fontSize: { xs: '1.1rem', md: '1.25rem' } }}
+            sx={{
+              fontWeight: 'normal',
+              color: 'text.secondary',
+              fontSize: { xs: '1.1rem', md: '1.25rem' },
+            }}
           >
-            Each project is unique. Contact us for a free consultation and personalised quote.
+            Each project is unique. Contact us for a free consultation and
+            personalised quote.
           </Typography>
           <Typography
             variant="h6"
-            sx={{ fontWeight: 'normal', color: 'text.secondary', fontSize: { xs: '1.05rem', md: '1.15rem' }, mt:1 }}
+            sx={{
+              fontWeight: 'normal',
+              color: 'text.secondary',
+              fontSize: { xs: '1.05rem', md: '1.15rem' },
+              mt: 1,
+            }}
           >
-            If you prefer to host the site yourself after setup, you only pay the setup fee.
+            If you prefer to host the site yourself after setup, you only pay
+            the setup fee.
           </Typography>
         </Box>
 
         {/* Pricing Cards */}
         <Grid container spacing={6} justifyContent="center">
           {plans.map((plan) => (
-            <Grid size={{xs:12, sm:10, md:4}} key={plan.name}>
+            <Grid size={{ xs: 12, sm: 10, md: 4 }} key={plan.name}>
               <Card
                 sx={{
                   height: '100%',
                   position: 'relative',
                   border: plan.badge === 'popular' ? '2px solid' : undefined,
-                  borderColor: plan.badge === 'popular' ? 'primary.main' : undefined,
+                  borderColor:
+                    plan.badge === 'popular' ? 'primary.main' : undefined,
                   boxShadow: plan.badge === 'popular' ? 6 : 3,
                   transition: 'transform 0.3s, box-shadow 0.3s',
-                  '&:hover': { transform: 'scale(1.05)', boxShadow: plan.badge === 'popular' ? 8 : 6 },
+                  '&:hover': {
+                    transform: 'scale(1.05)',
+                    boxShadow: plan.badge === 'popular' ? 8 : 6,
+                  },
                 }}
               >
                 <CardContent sx={{ p: 5 }}>
                   {/* Plan Header */}
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    {plan.badge === 'popular' && <StarIcon sx={{ color: '#d4af37', mr: 1 }} />}
-                    <Typography variant="overline" sx={{ fontWeight: 'bold', color: plan.badge ? 'primary.main' : 'text.secondary', textTransform: 'uppercase' }}>
+                    {plan.badge === 'popular' && (
+                      <StarIcon sx={{ color: '#d4af37', mr: 1 }} />
+                    )}
+                    <Typography
+                      variant="overline"
+                      sx={{
+                        fontWeight: 'bold',
+                        color: plan.badge ? 'primary.main' : 'text.secondary',
+                        textTransform: 'uppercase',
+                      }}
+                    >
                       {plan.name}
                     </Typography>
                   </Box>
@@ -146,7 +185,9 @@ function PricingSection() {
                   {/* Price */}
                   <Box sx={{ mb: 2 }}>
                     <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
-                      <Typography variant="h3" sx={{ fontWeight: 'bold' }}>{plan.price}</Typography>
+                      <Typography variant="h3" sx={{ fontWeight: 'bold' }}>
+                        {plan.price}
+                      </Typography>
                       <Typography variant="body1" color="text.secondary" ml={1}>
                         {plan.period}
                       </Typography>
@@ -162,14 +203,24 @@ function PricingSection() {
                   {/* Features */}
                   <List sx={{ p: 0 }}>
                     {plan.features.map((feature, idx) => (
-                      <ListItem key={idx} sx={{ px: feature.type === 'feature' ? 3 : 0, py: 0.5 }}>
+                      <ListItem
+                        key={idx}
+                        sx={{ px: feature.type === 'feature' ? 3 : 0, py: 0.5 }}
+                      >
                         {feature.type === 'header' ? (
-                          <Typography variant="subtitle1" fontWeight={600} color="text.primary" mb={0.5}>
+                          <Typography
+                            variant="subtitle1"
+                            fontWeight={600}
+                            color="text.primary"
+                            mb={0.5}
+                          >
                             {feature.text}
                           </Typography>
                         ) : (
                           <>
-                            <ListItemIcon sx={{ minWidth: 32 }}><CheckCircleIcon color="primary" /></ListItemIcon>
+                            <ListItemIcon sx={{ minWidth: 32 }}>
+                              <CheckCircleIcon color="primary" />
+                            </ListItemIcon>
                             <ListItemText primary={feature.text} />
                           </>
                         )}

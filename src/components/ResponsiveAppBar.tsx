@@ -9,7 +9,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import logo from "/navbar-logo.png";
+import logo from '/navbar-logo.png';
 import { useNavigate } from 'react-router-dom';
 
 const pages = [
@@ -20,7 +20,9 @@ const pages = [
 
 function ResponsiveAppBar() {
   const navigate = useNavigate();
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null,
+  );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -42,7 +44,6 @@ function ResponsiveAppBar() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
-
           {/* Logo */}
           <Box
             component="a"
@@ -99,7 +100,16 @@ function ResponsiveAppBar() {
           </Box>
 
           {/* Desktop Links */}
-          <Box component="ul" sx={{ display: { xs: 'none', md: 'flex' }, gap: 2, listStyle: 'none', m: 0, p: 0 }}>
+          <Box
+            component="ul"
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+              gap: 2,
+              listStyle: 'none',
+              m: 0,
+              p: 0,
+            }}
+          >
             {pages.map((page) => (
               <li key={page.link}>
                 <Button
@@ -117,7 +127,6 @@ function ResponsiveAppBar() {
               </li>
             ))}
           </Box>
-
         </Toolbar>
       </Container>
     </AppBar>

@@ -11,12 +11,27 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Helmet } from 'react-helmet-async';
 
 function AccessibilityPage() {
-  const accessibilityFeatures = useMemo(() => [
-    { title: "Keyboard Navigation", description: "Full keyboard accessibility for all interactive elements" },
-    { title: "Screen Reader Compatible", description: "Works with JAWS, NVDA, VoiceOver, and TalkBack" },
-    { title: "High Contrast", description: "Color schemes meet WCAG contrast requirements" },
-    { title: "Responsive Text", description: "Text can be resized up to 200% without loss of function" }
-  ], []);
+  const accessibilityFeatures = useMemo(
+    () => [
+      {
+        title: 'Keyboard Navigation',
+        description: 'Full keyboard accessibility for all interactive elements',
+      },
+      {
+        title: 'Screen Reader Compatible',
+        description: 'Works with JAWS, NVDA, VoiceOver, and TalkBack',
+      },
+      {
+        title: 'High Contrast',
+        description: 'Color schemes meet WCAG contrast requirements',
+      },
+      {
+        title: 'Responsive Text',
+        description: 'Text can be resized up to 200% without loss of function',
+      },
+    ],
+    [],
+  );
 
   const hoverCardSx = {
     height: '100%',
@@ -33,12 +48,12 @@ function AccessibilityPage() {
   return (
     <Box component="main">
       <Helmet>
-  <title>Accessibility Statement | Atomic Rocket Digital</title>
-  <meta 
-    name="description" 
-    content="Atomic Rocket Digital is committed to accessibility, ensuring our websites are inclusive and usable for everyone." 
-  />
-</Helmet>
+        <title>Accessibility Statement | Atomic Rocket Digital</title>
+        <meta
+          name="description"
+          content="Atomic Rocket Digital is committed to accessibility, ensuring our websites are inclusive and usable for everyone."
+        />
+      </Helmet>
       {/* Hero Header Section */}
       <Box
         component="section"
@@ -67,7 +82,10 @@ function AccessibilityPage() {
             },
           }}
         />
-        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2, textAlign: 'center', py: 6 }}>
+        <Container
+          maxWidth="lg"
+          sx={{ position: 'relative', zIndex: 2, textAlign: 'center', py: 6 }}
+        >
           <Typography
             component="h1"
             variant="h1"
@@ -111,21 +129,50 @@ function AccessibilityPage() {
       <Box
         component="section"
         aria-label="Accessibility features"
-        sx={{ py: 8, background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)' }}
+        sx={{
+          py: 8,
+          background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
+        }}
       >
         <Container maxWidth="lg">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 800, mb: 6, textAlign: 'center', fontSize: { xs: '2rem', md: '2.5rem' } }}>
+          <Typography
+            variant="h2"
+            component="h2"
+            sx={{
+              fontWeight: 800,
+              mb: 6,
+              textAlign: 'center',
+              fontSize: { xs: '2rem', md: '2.5rem' },
+            }}
+          >
             Accessibility Features
           </Typography>
 
           <Grid container spacing={4}>
             {accessibilityFeatures.map((feature, index) => (
               <Grid key={index} size={{ xs: 12, sm: 12, md: 3 }}>
-                <Card sx={hoverCardSx} tabIndex={0} role="region" aria-label={feature.title}>
+                <Card
+                  sx={hoverCardSx}
+                  tabIndex={0}
+                  role="region"
+                  aria-label={feature.title}
+                >
                   <CardContent sx={{ p: 3, textAlign: 'center' }}>
-                    <CheckCircleIcon sx={{ fontSize: 48, color: '#0d6efd', mb: 2 }} />
-                    <Typography variant="h6" sx={{ fontWeight: 700, mb: 1, color: '#1a1a1a' }}>{feature.title}</Typography>
-                    <Typography variant="body2" sx={{ color: '#666', lineHeight: 1.6 }}>{feature.description}</Typography>
+                    <CheckCircleIcon
+                      sx={{ fontSize: 48, color: '#0d6efd', mb: 2 }}
+                    />
+                    <Typography
+                      variant="h6"
+                      sx={{ fontWeight: 700, mb: 1, color: '#1a1a1a' }}
+                    >
+                      {feature.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{ color: '#666', lineHeight: 1.6 }}
+                    >
+                      {feature.description}
+                    </Typography>
                   </CardContent>
                 </Card>
               </Grid>
@@ -153,81 +200,103 @@ function AccessibilityPage() {
               },
             }}
           >
-            <Typography variant="body2" sx={{ color: '#666', mb: 4, fontStyle: 'italic' }}>
+            <Typography
+              variant="body2"
+              sx={{ color: '#666', mb: 4, fontStyle: 'italic' }}
+            >
               Last Updated: December 2024
             </Typography>
 
             {/* Sections */}
             {[
               {
-                heading: "Our Commitment to Accessibility",
-                body: "Atomic Rocket Digital is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards to ensure our website is accessible to all visitors."
+                heading: 'Our Commitment to Accessibility',
+                body: 'Atomic Rocket Digital is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards to ensure our website is accessible to all visitors.',
               },
               {
-                heading: "Conformance Status",
-                body: "We strive to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA standards, as required by UK accessibility regulations."
+                heading: 'Conformance Status',
+                body: 'We strive to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA standards, as required by UK accessibility regulations.',
               },
               {
-                heading: "Assistive Technologies",
-                body: "Our website is designed to be compatible with:",
+                heading: 'Assistive Technologies',
+                body: 'Our website is designed to be compatible with:',
                 list: [
-                  "Screen readers (including JAWS, NVDA, VoiceOver, and TalkBack)",
-                  "Voice recognition software",
-                  "Keyboard-only navigation",
-                  "Screen magnification software",
-                  "High contrast and dark mode displays",
-                  "Mobile accessibility features"
-                ]
+                  'Screen readers (including JAWS, NVDA, VoiceOver, and TalkBack)',
+                  'Voice recognition software',
+                  'Keyboard-only navigation',
+                  'Screen magnification software',
+                  'High contrast and dark mode displays',
+                  'Mobile accessibility features',
+                ],
               },
               {
-                heading: "Feedback and Support",
-                body: "We welcome your feedback on the accessibility of our website. If you encounter any accessibility barriers or have suggestions for improvement, please contact us:",
-                contact: "Email: hello@atomicrocketdigital.com",
-                note: 'Please use "Accessibility Feedback" in your subject line. We aim to respond within 5 business days.'
+                heading: 'Feedback and Support',
+                body: 'We welcome your feedback on the accessibility of our website. If you encounter any accessibility barriers or have suggestions for improvement, please contact us:',
+                contact: 'Email: hello@atomicrocketdigital.com',
+                note: 'Please use "Accessibility Feedback" in your subject line. We aim to respond within 5 business days.',
               },
               {
-                heading: "Alternative Contact Methods",
-                body: "If you experience difficulty using our online contact form due to accessibility issues, you can also reach us directly via email at hello@atomicrocketdigital.com."
+                heading: 'Alternative Contact Methods',
+                body: 'If you experience difficulty using our online contact form due to accessibility issues, you can also reach us directly via email at hello@atomicrocketdigital.com.',
               },
               {
-                heading: "Legal Compliance",
-                body: "We aim to comply with:",
+                heading: 'Legal Compliance',
+                body: 'We aim to comply with:',
                 list: [
-                  "The Public Sector Bodies (Websites and Mobile Applications) Accessibility Regulations 2018",
-                  "The Equality Act 2010",
-                  "Web Content Accessibility Guidelines (WCAG) 2.1 Level AA",
-                  "European Accessibility Act requirements"
-                ]
+                  'The Public Sector Bodies (Websites and Mobile Applications) Accessibility Regulations 2018',
+                  'The Equality Act 2010',
+                  'Web Content Accessibility Guidelines (WCAG) 2.1 Level AA',
+                  'European Accessibility Act requirements',
+                ],
               },
               {
-                heading: "Continuous Improvement",
-                body: "Accessibility is an ongoing commitment. We regularly:",
+                heading: 'Continuous Improvement',
+                body: 'Accessibility is an ongoing commitment. We regularly:',
                 list: [
-                  "Review and update our accessibility practices",
-                  "Test new content and features for accessibility",
-                  "Stay current with accessibility best practices and guidelines",
-                  "Incorporate user feedback into our improvement processes",
-                  "Provide accessibility training for our team"
-                ]
+                  'Review and update our accessibility practices',
+                  'Test new content and features for accessibility',
+                  'Stay current with accessibility best practices and guidelines',
+                  'Incorporate user feedback into our improvement processes',
+                  'Provide accessibility training for our team',
+                ],
               },
               {
-                heading: "Contact Information",
-                body: "For any questions about this accessibility statement or to report accessibility issues, please contact us at:",
-                contact: "Email: hello@atomicrocketdigital.com"
-              }
+                heading: 'Contact Information',
+                body: 'For any questions about this accessibility statement or to report accessibility issues, please contact us at:',
+                contact: 'Email: hello@atomicrocketdigital.com',
+              },
             ].map((section, i) => (
               <Box key={i} sx={{ mb: 4 }}>
-                <Typography variant="h4" sx={{ fontWeight: 700, mb: 2, color: '#1a1a1a' }}>{section.heading}</Typography>
-                <Typography variant="body1" sx={{ lineHeight: 1.7, color: '#444', mb: section.list || section.contact ? 1 : 3 }}>
+                <Typography
+                  variant="h4"
+                  sx={{ fontWeight: 700, mb: 2, color: '#1a1a1a' }}
+                >
+                  {section.heading}
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    lineHeight: 1.7,
+                    color: '#444',
+                    mb: section.list || section.contact ? 1 : 3,
+                  }}
+                >
                   {section.body}
                 </Typography>
                 {section.list && (
                   <Box component="ul" sx={{ pl: 3, color: '#444', mb: 2 }}>
-                    {section.list.map((item, idx) => <li key={idx}>{item}</li>)}
+                    {section.list.map((item, idx) => (
+                      <li key={idx}>{item}</li>
+                    ))}
                   </Box>
                 )}
                 {section.contact && (
-                  <Typography variant="body1" sx={{ color: '#0d6efd', fontWeight: 600, mb: 2 }}>{section.contact}</Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{ color: '#0d6efd', fontWeight: 600, mb: 2 }}
+                  >
+                    {section.contact}
+                  </Typography>
                 )}
                 <Divider />
               </Box>
