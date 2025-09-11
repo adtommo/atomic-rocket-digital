@@ -1,4 +1,3 @@
-// eslint.config.js
 import js from '@eslint/js';
 import globals from 'globals';
 import react from 'eslint-plugin-react';
@@ -20,6 +19,7 @@ export default [
       globals: {
         ...globals.browser,
         ...globals.node,
+        ...globals.jest, // ✅ add Jest globals like "it", "expect", etc.
       },
     },
     plugins: {
@@ -33,11 +33,20 @@ export default [
       ...react.configs.recommended.rules,
       ...ts.configs.recommended.rules,
       'prettier/prettier': 'error',
-      'react/react-in-jsx-scope': 'off', // React 17+ doesn't need import React
+      'react/react-in-jsx-scope': 'off',
     },
     settings: {
       react: {
         version: 'detect',
+      },
+    },
+  },
+  {
+    // Optional: override for test files
+    files: ['**/*.test.{ts,tsx,js,jsx}'],
+    languageOptions: {
+      globals: {
+        ...globals.jest, // Jest globals specifically for test files
       },
     },
   },

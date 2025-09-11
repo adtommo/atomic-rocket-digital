@@ -75,7 +75,7 @@ describe('FooterSection', () => {
     const scrollIntoViewMock = vi.fn();
     vi.spyOn(document, 'getElementById').mockReturnValue({
       scrollIntoView: scrollIntoViewMock,
-    } as any);
+    } as unknown as HTMLElement);
 
     const link = screen.getByRole('link', { name: new RegExp(linkName, 'i') });
     fireEvent.click(link);
