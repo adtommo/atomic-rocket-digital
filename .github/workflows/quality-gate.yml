@@ -212,7 +212,7 @@ jobs:
           queries: security-extended,security-and-quality
       - uses: github/codeql-action/autobuild@v3
       - uses: github/codeql-action/analyze@v3
-      
+
   dependabot-fix:
     if: github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
@@ -242,10 +242,9 @@ jobs:
       - name: Commit auto-fixes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: auto-fix lint & format for Dependabot PR"
+          commit_message: 'chore: auto-fix lint & format for Dependabot PR'
           branch: ${{ github.head_ref }}
-          author_name: "github-actions"
-          author_email: "github-actions@github.com"
+          author_name: 'github-actions'
+          author_email: 'github-actions@github.com'
           signoff: true
-          file_pattern: "."
-
+          file_pattern: '.'
