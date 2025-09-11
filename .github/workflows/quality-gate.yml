@@ -2,7 +2,9 @@ name: Quality Gate
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
+  push:
+    branches: [ main ]
 
 permissions:
   contents: read
@@ -10,50 +12,84 @@ permissions:
   security-events: write
 
 jobs:
-  # ✅ Workflow linting
-  lint-workflows:
-    name: Lint GitHub Workflows
+  setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run actionlint
-        uses: docker://rhysd/actionlint:latest
+      - uses: actions/setup-node@v4
         with:
-          args: -color
+          node-version: 20
+          cache: pnpm
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - run: pnpm install --frozen-lockfile
 
-  # ✅ Harden runner
-  harden-runner:
-    name: Harden Runner
+  lint:
     runs-on: ubuntu-latest
+    needs: setup
     steps:
-      - uses: step-security/harden-runner@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          egress-policy: block
+          node-version: 20
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - run: pnpm lint
+      - run: pnpm format:check
 
-  # ✅ Secret scanning
-  secret-scan:
-    name: Secret Scan
+  type-check:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - run: pnpm tsc --noEmit
+
+  test:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - run: pnpm test
+
+  build:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - run: pnpm build
+
+  trufflehog:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - name: Run TruffleHog
-        uses: trufflesecurity/trufflehog@v3
+        uses: trufflesecurity/trufflehog@v3.90.5
         with:
           path: .
           github_token: ${{ secrets.GITHUB_TOKEN }}
           extra_args: --only-verified
 
-  # ✅ Dependency review
-  dependency-review:
-    name: Dependency Review
-    runs-on: ubuntu-latest
-    steps:
-      - name: Dependency Review
-        uses: actions/dependency-review-action@v4
-
-  # ✅ Static code analysis (CodeQL - free for public repos)
   codeql:
-    name: CodeQL Security Scan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -61,87 +97,3 @@ jobs:
         with:
           languages: javascript, typescript
       - uses: github/codeql-action/analyze@v3
-
-  # ✅ Install dependencies (pnpm)
-  setup:
-    name: Setup Project
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
-          run_install: true
-
-  # ✅ TypeScript type check
-  type-check:
-    name: TypeScript Type Check
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm tsc --noEmit
-
-  # ✅ Code lint & formatting check
-  lint:
-    name: Lint & Format Check
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm lint
-      - run: pnpm format:check
-
-  # ✅ Run tests
-  tests:
-    name: Run Tests
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm test
-
-  # ✅ Build check
-  build:
-    name: Build Project
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build
