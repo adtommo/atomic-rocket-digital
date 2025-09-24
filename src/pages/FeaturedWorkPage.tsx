@@ -26,10 +26,11 @@ export default function FeaturedWorkPage() {
   const featuredWork = [
     {
       id: 1,
-      image: 'https://dummyimage.com/600x350',
-      alt: 'Featured Project 1',
-      title: 'Project Alpha',
-      description: 'Modern web application with responsive design',
+      image: 'https://cosycornerembroidery.com/logo.jpg',
+      alt: 'Cosy Corner Embroidery',
+      title: 'Cosy Corner Embroidery',
+      description: 'Small Embroidery Business',
+      href: 'https://cosycornerembroidery.com',
     },
     {
       id: 2,
@@ -37,6 +38,7 @@ export default function FeaturedWorkPage() {
       alt: 'Featured Project 2',
       title: 'Project Beta',
       description: 'Mobile-first e-commerce platform',
+      href: '',
     },
     {
       id: 3,
@@ -44,6 +46,7 @@ export default function FeaturedWorkPage() {
       alt: 'Featured Project 3',
       title: 'Project Gamma',
       description: 'Enterprise dashboard solution',
+      href: '',
     },
   ];
 
@@ -75,9 +78,12 @@ export default function FeaturedWorkPage() {
             <Grid size={{ xs: 12, md: 4 }} key={work.id}>
               <StyledCard>
                 <CardActionArea
-                  component="article"
+                  component="a"
                   aria-labelledby={`project-title-${work.id}`}
                   aria-describedby={`project-desc-${work.id}`}
+                  href={work.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <CardMedia
                     component="img"

@@ -21,34 +21,34 @@ describe('FeaturedWorkPage', () => {
 
   it('renders the main heading', () => {
     const heading = screen.getByRole('heading', { name: /Featured Work/i });
-    expect(heading).toBeDefined();
+    expect(heading).toBeInTheDocument();
   });
 
   it('renders all featured projects', () => {
     const projects = [
-      { title: /Project Alpha/i, desc: /Modern web application/i },
-      { title: /Project Beta/i, desc: /Mobile-first e-commerce/i },
-      { title: /Project Gamma/i, desc: /Enterprise dashboard/i },
+      { title: /Cosy Corner Embroidery/i, desc: /Small Embroidery Business/i },
+      { title: /Project Beta/i, desc: /Mobile-first e-commerce platform/i },
+      { title: /Project Gamma/i, desc: /Enterprise dashboard solution/i },
     ];
 
     projects.forEach(({ title, desc }) => {
       const titleEl = screen.getByText(title);
       const descEl = screen.getByText(desc);
-      expect(titleEl).toBeDefined();
-      expect(descEl).toBeDefined();
+      expect(titleEl).toBeInTheDocument();
+      expect(descEl).toBeInTheDocument();
     });
   });
 
   it('renders images with accessible alt text', () => {
     const alts = [
-      /Featured Project 1/i,
+      /Cosy Corner Embroidery/i,
       /Featured Project 2/i,
       /Featured Project 3/i,
     ];
 
     alts.forEach((altText) => {
       const img = screen.getByAltText(altText);
-      expect(img).toBeDefined();
+      expect(img).toBeInTheDocument();
     });
   });
 });
