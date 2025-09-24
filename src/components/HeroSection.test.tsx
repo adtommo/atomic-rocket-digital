@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { HelmetProvider } from 'react-helmet-async';
 import HeroSection from './HeroSection';
+import React from 'react';
 import { vi } from 'vitest';
 
 describe('HeroSection', () => {

@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { HelmetProvider } from 'react-helmet-async';
 import PricingSection from './PricingSection';
 

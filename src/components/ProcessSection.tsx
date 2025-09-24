@@ -9,7 +9,6 @@ import StepConnector, {
   stepConnectorClasses,
 } from '@mui/material/StepConnector';
 import { styled } from '@mui/material/styles';
-import { Helmet } from 'react-helmet-async';
 
 const steps = [
   {

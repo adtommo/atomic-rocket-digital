@@ -1,6 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import GetInTouchForm from './GetInTouchForm';
-import React from 'react';
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 
@@ -30,8 +29,8 @@ describe('GetInTouchForm', () => {
   });
 
   it('does not submit if honeypot is filled', async () => {
-    const fetchMock = vi.fn();
-    global.fetch = fetchMock as any;
+    const fetchMock = vi.fn() as unknown as typeof fetch;
+    global.fetch = fetchMock;
 
     const honeyInput = document.createElement('input');
     honeyInput.setAttribute('name', 'honey');
@@ -49,8 +48,8 @@ describe('GetInTouchForm', () => {
   it('submits successfully and shows success snackbar', async () => {
     const fetchMock = vi.fn().mockResolvedValue({
       json: async () => ({ result: 'success' }),
-    });
-    global.fetch = fetchMock as any;
+    }) as unknown as typeof fetch;
+    global.fetch = fetchMock;
 
     fireEvent.change(screen.getByLabelText(/first name/i), {
       target: { value: 'John' },
@@ -88,8 +87,8 @@ describe('GetInTouchForm', () => {
               100,
             ),
           ),
-      );
-    global.fetch = fetchMock as any;
+      ) as unknown as typeof fetch;
+    global.fetch = fetchMock;
 
     fireEvent.change(screen.getByLabelText(/first name/i), {
       target: { value: 'John' },
@@ -117,8 +116,8 @@ describe('GetInTouchForm', () => {
   it('shows error snackbar on failed submission', async () => {
     const fetchMock = vi.fn().mockResolvedValue({
       json: async () => ({ result: 'error' }),
-    });
-    global.fetch = fetchMock as any;
+    }) as unknown as typeof fetch;
+    global.fetch = fetchMock;
 
     fireEvent.change(screen.getByLabelText(/first name/i), {
       target: { value: 'John' },
