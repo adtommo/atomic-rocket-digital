@@ -53,18 +53,30 @@ function GetInTouchForm() {
     try {
       setLoading(true);
 
-      const webAppUrl =
-        'https://script.google.com/macros/s/AKfycbzQQMOm4fokWIHrYOOr5lNg_2cJlFaxMj97bkUtbOMw0zoz5_p5hQueWTyLoimaUJ2DsA/exec';
-      const payload = new URLSearchParams({ ...formData });
+      // point to your Cloudflare Worker route
+      const webAppUrl = '/api/send';
+      const payload = new FormData();
+
+      // map React formData to backend’s expected keys
+      payload.append('firstName', formData.firstName);
+      payload.append('lastName', formData.lastName);
+      payload.append('email', formData.email);
+      payload.append('phone', formData.phone);
+      payload.append('service', formData.service);
+      payload.append('description', formData.message); // backend expects "description"
 
       const response = await fetch(webAppUrl, {
         method: 'POST',
         body: payload,
       });
 
+      if (!response.ok) {
+        throw new Error(`Request failed: ${response.status}`);
+      }
+
       const result = await response.json();
 
-      if (result.result === 'success') {
+      if (result.message?.includes('success')) {
         setShowSuccess(true);
         setFormData({
           firstName: '',

@@ -47,7 +47,8 @@ describe('GetInTouchForm', () => {
 
   it('submits successfully and shows success snackbar', async () => {
     const fetchMock = vi.fn().mockResolvedValue({
-      json: async () => ({ result: 'success' }),
+      ok: true,
+      json: async () => ({ message: 'Email sent successfully!' }),
     }) as unknown as typeof fetch;
     global.fetch = fetchMock;
 
@@ -77,17 +78,19 @@ describe('GetInTouchForm', () => {
   });
 
   it('shows overlay while submitting', async () => {
-    const fetchMock = vi
-      .fn()
-      .mockImplementation(
-        () =>
-          new Promise((resolve) =>
-            setTimeout(
-              () => resolve({ json: async () => ({ result: 'success' }) }),
-              100,
-            ),
+    const fetchMock = vi.fn().mockImplementation(
+      () =>
+        new Promise((resolve) =>
+          setTimeout(
+            () =>
+              resolve({
+                ok: true,
+                json: async () => ({ message: 'Email sent successfully!' }),
+              }),
+            100,
           ),
-      ) as unknown as typeof fetch;
+        ),
+    ) as unknown as typeof fetch;
     global.fetch = fetchMock;
 
     fireEvent.change(screen.getByLabelText(/first name/i), {
@@ -115,7 +118,8 @@ describe('GetInTouchForm', () => {
 
   it('shows error snackbar on failed submission', async () => {
     const fetchMock = vi.fn().mockResolvedValue({
-      json: async () => ({ result: 'error' }),
+      ok: false,
+      json: async () => ({ message: 'Failed to send email' }),
     }) as unknown as typeof fetch;
     global.fetch = fetchMock;
 
